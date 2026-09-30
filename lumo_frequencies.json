@@ -57,14 +57,14 @@
   },
 
   "sources": {
-    "paper_table2": "OA PDF (repo.uni-hannover.de) -> pdftotext -layout",
-    "local_measured": "lumo_damping_ratio.json (channel-mean Welch PSD, nperseg 32 s, parabolic peak interpolation)"
+    "paper_table2": "Table 2 of the LUMO journal paper (open-access PDF), transcribed with pdftotext -layout",
+    "local_measured": "channel-mean Welch PSD recomputed in this repository (lumo_damping_frequencies.py), nperseg 32 s, parabolic peak interpolation"
   },
 
   "caveats": [
-    "DAM3/DAM4 B2-y rows shift by <1 % in the paper and <1.5 % locally — inside the 0.25 Hz bin quantisation documented in LUMO_DAM6_FREQUENCY_ANALYSIS.md (+-0.8 % at 16.1 Hz), so only DAM6 has a resolvable B2-y shift.",
+    "DAM3/DAM4 B2-y rows shift by <1 % in the paper and <1.5 % locally — inside the 0.25 Hz frequency grid of the forced-excitation tests (+-0.8 % at 16.1 Hz), so only DAM6 has a resolvable B2-y shift.",
     "The paper notes the repair between damage instances 'led to a stiffening of the structure', so its per-case values are not referenced to one common healthy state.",
-    "Local medians use 5 recordings per state; the alternative 0.25 Hz-bin consensus in LUMO_DAM6_FREQUENCY_ANALYSIS.md (healthy 2.7502/13.5009/16.101, DAM6 2.7502/11.7508/14.551) differs by <= 0.15 Hz.",
-    "No damping ratios stored here: the paper reports none for LUMO, and zeta cannot be derived from frequencies (6e-5 Hz effect vs a 0.031 Hz bin). See lumo_damping_ratio.json for the measured half-power zeta."
+    "Local medians use 5 recordings per state; the same recordings snapped to the 0.25 Hz frequency grid of the forced-excitation tests give healthy 2.7502/13.5009/16.101 and DAM6 2.7502/11.7508/14.551, i.e. within 0.15 Hz of the medians here.",
+    "No damping ratios stored here: the paper reports none for LUMO, and zeta cannot be derived from frequencies (6e-5 Hz effect vs a 0.031 Hz bin). See the per-recording zeta in the output of lumo_damping_frequencies.py and the damping discrimination scores in lumo_sds.py."
   ]
 }
