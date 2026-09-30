@@ -1,0 +1,70 @@
+{
+  "schema": "lumo_frequencies/v1",
+  "generated": "2026-09-30",
+  "unit": "Hz",
+  "description": "LUMO lattice-tower natural frequencies, healthy and damaged (DAM3/DAM4/DAM6): the paper's experimental Table 2 cross-referenced with the local SHM recordings.",
+
+  "paper": {
+    "citation": "N. Römgens, C. Hübler, R. Rolfes, Eng. Struct. 2024, DOI 10.1016/j.engstruct.2024.117570",
+    "table": "Table 2 — Modal parameters of the system identified from experimental data for healthy and damaged states",
+    "method": "covariance-driven stochastic subspace identification (SSI-COV), 10 min ambient-wind data sets, y-direction",
+    "modes_reported": ["B2-y", "B3-y", "B4-y", "B5-y"],
+    "note": "The paper reports frequencies only — no damping ratios for LUMO. The single 'damping rate of 0.01' refers to the simulated 3-DOF system (Section 3.1), not the tower."
+  },
+
+  "case_mapping": {
+    "healthy": { "paper_case": "Healthy", "paper_position": "-", "local_dir": "01_Healthy | 03_Healthy | 05_Healthy" },
+    "dam6": { "paper_case": "A", "paper_position": "All struts at level 6", "local_dir": "02_DAM6_111" },
+    "dam4": { "paper_case": "B", "paper_position": "All struts at level 4", "local_dir": "04_DAM4_111" },
+    "dam3": { "paper_case": "C", "paper_position": "All struts at level 3", "local_dir": "06_DAM3_111" },
+    "not_held_locally": ["D (one strut at level 6)", "E (one strut at level 4)", "F (one strut at level 3)"]
+  },
+  "healthy": {
+    "paper_table2_hz": { "B2-y": 15.94, "B3-y": 40.76, "B4-y": 69.15, "B5-y": 100.98 },
+    "local_measured_hz": {
+      "01_Healthy": { "fundamental": 2.802, "h1": 13.393, "h2": 16.001, "n_recordings": 5 },
+      "03_Healthy": { "fundamental": 2.799, "h1": 13.521, "h2": 16.010, "n_recordings": 5 },
+      "05_Healthy": { "fundamental": 2.792, "h1": 13.553, "h2": 15.989, "n_recordings": 5 }
+    }
+  },
+
+  "dam6": {
+    "paper_table2_hz": { "B2-y": 14.30, "B3-y": 34.88, "B4-y": 61.55, "B5-y": 94.29 },
+    "local_measured_hz": { "fundamental": 2.768, "h1": 11.644, "h2": 14.697, "n_recordings": 5 }
+  },
+
+  "dam4": {
+    "paper_table2_hz": { "B2-y": 15.89, "B3-y": 38.92, "B4-y": 64.96, "B5-y": 93.47 },
+    "local_measured_hz": { "fundamental": 2.769, "h1": 12.395, "h2": 16.222, "n_recordings": 5 }
+  },
+
+  "dam3": {
+    "paper_table2_hz": { "B2-y": 16.07, "B3-y": 37.08, "B4-y": 65.62, "B5-y": 88.77 },
+    "local_measured_hz": { "fundamental": 2.792, "h1": 12.524, "h2": 15.762, "n_recordings": 5 }
+  },
+
+  "mode_mapping": {
+    "fundamental (~2.75 Hz)": "below Table 2's first row; consistent with the un-tabulated B1-y sway mode",
+    "h1 (~13.5 Hz)": "NO Table 2 counterpart (-15 % from B2-y); likely torsional or x-direction (the paper notes torsional eigenmodes and that x-direction shifts are not identifiable)",
+    "h2 (~16.0 Hz)": "paper B2-y (15.94 Hz healthy, +1.0 %) — the only clean one-to-one pair",
+    "paper B3-y (40.76 / 34.88 Hz)": "the mode the paper used to dimension its autoencoder; NOT tracked by the local pipeline"
+  },
+
+  "shift_check_B2_y_vs_h2_pct": {
+    "dam6": { "paper": -10.29, "local": -8.15, "agree": true },
+    "dam4": { "paper": -0.31, "local": 1.32, "agree": false },
+    "dam3": { "paper": 0.82, "local": -1.42, "agree": false }
+  },
+
+  "sources": {
+    "paper_table2": "OA PDF (repo.uni-hannover.de) -> pdftotext -layout",
+    "local_measured": "lumo_damping_ratio.json (channel-mean Welch PSD, nperseg 32 s, parabolic peak interpolation)"
+  },
+
+  "caveats": [
+    "DAM3/DAM4 B2-y rows shift by <1 % in the paper and <1.5 % locally — inside the 0.25 Hz bin quantisation documented in LUMO_DAM6_FREQUENCY_ANALYSIS.md (+-0.8 % at 16.1 Hz), so only DAM6 has a resolvable B2-y shift.",
+    "The paper notes the repair between damage instances 'led to a stiffening of the structure', so its per-case values are not referenced to one common healthy state.",
+    "Local medians use 5 recordings per state; the alternative 0.25 Hz-bin consensus in LUMO_DAM6_FREQUENCY_ANALYSIS.md (healthy 2.7502/13.5009/16.101, DAM6 2.7502/11.7508/14.551) differs by <= 0.15 Hz.",
+    "No damping ratios stored here: the paper reports none for LUMO, and zeta cannot be derived from frequencies (6e-5 Hz effect vs a 0.031 Hz bin). See lumo_damping_ratio.json for the measured half-power zeta."
+  ]
+}
