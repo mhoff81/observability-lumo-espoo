@@ -1,0 +1,39 @@
+{
+  "schema": "lumo_sds_expected/v1",
+  "generated": "2026-09-25",
+  "tolerance": 1e-09,
+  "provenance": "Values held by the external evidence-channel store for the LUMO test asset, transcribed here by hand on 2026-09-25 16:58:54 UTC. This file is a REFERENCE ONLY: it is read by `lumo_sds.py --verify` and nowhere else, the score is computed from the raw recordings regardless, and deleting this file does not change a single digit of the output.",
+  "channels": {
+    "LUMO_H1_FREQUENCY": {
+      "value": "h1 peak frequency",
+      "sds": 10.0,
+      "n_samples": 30,
+      "per_campaign": {
+        "dam3": { "delta": -1.0 },
+        "dam4": { "delta": -1.0 },
+        "dam6": { "delta": -1.0 }
+      }
+    },
+    "LUMO_H1_DAMPING": {
+      "value": "h1 half-power damping ratio zeta",
+      "sds": 9.733333333333333,
+      "n_samples": 30,
+      "per_campaign": {
+        "dam3": { "delta": -0.92 },
+        "dam4": { "delta": -1.0 },
+        "dam6": { "delta": -1.0 }
+      }
+    },
+    "LUMO_H2_DAMPING": {
+      "value": "h2 half-power damping ratio zeta",
+      "sds": 3.2,
+      "n_samples": 20,
+      "excluded_pairs": [["dam3", "h2"]],
+      "per_campaign": {
+        "dam3": { "delta": null, "excluded": true },
+        "dam4": { "delta": -0.44 },
+        "dam6": { "delta": 0.2 }
+      }
+    }
+  }
+}

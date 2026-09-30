@@ -1,0 +1,4 @@
+# Nothing here is a build artefact of a committed file, but the scripts are
+# sometimes imported by hand; keep bytecode out of the history.
+__pycache__/
+*.pyc

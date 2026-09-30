@@ -1,0 +1,1574 @@
+{
+  "schema": "lumo_damping_frequencies/v1",
+  "generated": "2026-09-30",
+  "unit": "Hz",
+  "description": "LUMO lattice-tower modal frequencies (fundamental, H1, H2) in the healthy, DAM3, DAM4 and DAM6 states, computed from the raw Uni-Hannover SHM acceleration recordings with the same estimator that measures the modal damping ratio zeta.",
+  "method": {
+    "estimator": "channel-mean Welch PSD; peak = vertex of the parabola through the log-PSD of the peak bin and its two neighbours",
+    "nperseg_s": 32.0,
+    "window": "Hann (scipy.signal.welch default), 50 % overlap, scaling='density'",
+    "psd_bin_hz": "fs / nperseg = 0.0313 Hz at fs = 1651.6129 Hz",
+    "noise_floor": "median of the channel-mean PSD over 1-50 Hz",
+    "snr_gate": 3.0,
+    "fundamental_band_hz": [
+      2.0,
+      3.5
+    ],
+    "adaptive_windows_hz": {
+      "dam6-healthy": [
+        13.5,
+        16.1
+      ],
+      "dam6-dam6": [
+        11.75,
+        14.0
+      ],
+      "dam3-healthy": [
+        13.5,
+        16.1
+      ],
+      "dam3-dam3": [
+        12.5,
+        14.9
+      ],
+      "dam4-healthy": [
+        13.5,
+        16.1
+      ],
+      "dam4-dam4": [
+        12.5,
+        16.1
+      ]
+    },
+    "aggregate": "median over the recordings of the state (see n_excited)",
+    "zeta_method": "half-power bandwidth at the peak bin: zeta = (f_hi - f_lo) / (2 f_peak) with the -3 dB crossings interpolated linearly; resolution_floor = df / (2 f_peak) is the width of one PSD bin, and `resolvable` is the test zeta > 3 x resolution_floor",
+    "estimator_source": "implemented in full in this script - self-contained: no imports from other project code, no database, no external files"
+  },
+  "data_provenance": {
+    "title": "LUMO - Leibniz University Test Structure for Monitoring",
+    "authors": "Stefan Wernitz, Benedikt Hofmeister, Clemens Jonscher, Tanja Giessmann, Raimund Rolfes",
+    "publisher": "LUIS - Forschungsdaten-Repositorium der Leibniz Universitaet Hannover",
+    "institute": "Institut fuer Statik und Dynamik, Leibniz Universitaet Hannover",
+    "doi": "10.25835/0027803",
+    "license": "CC BY 3.0",
+    "license_url": "https://creativecommons.org/licenses/by/3.0/",
+    "landing_page": "https://data.uni-hannover.de/dataset/93b52576-6a5a-4ce9-8c27-a0372590f7b0",
+    "bulk_vault": "https://data.uni-hannover.de/vault/isd/wernitz/lumo/",
+    "meteorological_data": "on request: public.data@isd.uni-hannover.de",
+    "archives": {
+      "01_Healthy + 02_DAM6_111": {
+        "file": "exemplary_datasets_dam6_111.zip",
+        "resource_id": "d9661b47-1f25-4194-99e8-6805fcd5810e",
+        "bytes": 680154659,
+        "download_url": "https://data.uni-hannover.de/dataset/93b52576-6a5a-4ce9-8c27-a0372590f7b0/resource/d9661b47-1f25-4194-99e8-6805fcd5810e/download/exemplary_datasets_dam6_111.zip",
+        "contents": [
+          "01_Healthy",
+          "02_DAM6_111"
+        ],
+        "n_mat": 10
+      },
+      "03_Healthy + 04_DAM4_111": {
+        "file": "exemplary_datasets_dam4_111.zip",
+        "resource_id": "83ee4ee4-d86b-49ce-92dd-743bd779d845",
+        "bytes": 665801542,
+        "download_url": "https://data.uni-hannover.de/dataset/93b52576-6a5a-4ce9-8c27-a0372590f7b0/resource/83ee4ee4-d86b-49ce-92dd-743bd779d845/download/exemplary_datasets_dam4_111.zip",
+        "contents": [
+          "03_Healthy",
+          "04_DAM4_111"
+        ],
+        "n_mat": 10
+      },
+      "05_Healthy + 06_DAM3_111": {
+        "file": "exemplary_datasets_dam3_111.zip",
+        "resource_id": "78da8221-a6bb-4ad9-9f53-e3d9164b3c52",
+        "bytes": 638712761,
+        "download_url": "https://data.uni-hannover.de/dataset/93b52576-6a5a-4ce9-8c27-a0372590f7b0/resource/78da8221-a6bb-4ad9-9f53-e3d9164b3c52/download/exemplary_datasets_dam3_111.zip",
+        "contents": [
+          "05_Healthy",
+          "06_DAM3_111"
+        ],
+        "n_mat": 10
+      }
+    },
+    "dataset_readme": {
+      "file": "readme.pdf",
+      "resource_id": "bd0a6d0a-3ff3-4780-91cc-1d816ab39fb9",
+      "bytes": 1853104
+    },
+    "note": "Each archive carries its OWN healthy-state recordings from its own field campaign (healthy Oct-2020 / Nov-2020 / Mar-2021), which is why the three healthy medians differ. Only paired within-campaign comparisons are valid; the paper's `_010` archives are not used."
+  },
+  "states": {
+    "01_Healthy": {
+      "campaign": "dam6",
+      "state": "healthy",
+      "n_recordings": 5,
+      "modes": {
+        "fundamental": {
+          "n_excited": 5,
+          "median_hz": 2.80172,
+          "p25_hz": 2.797259,
+          "p75_hz": 2.802957,
+          "min_hz": 2.790266,
+          "max_hz": 2.808191,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 0,
+            "median": 0.013881475,
+            "p25": 0.013566914,
+            "p75": 0.014263695,
+            "min": 0.012504776,
+            "max": 0.016401674
+          }
+        },
+        "h1": {
+          "n_excited": 5,
+          "median_hz": 13.393187,
+          "p25_hz": 13.388088,
+          "p75_hz": 13.419524,
+          "min_hz": 13.367579,
+          "max_hz": 13.443297,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 4,
+            "median": 0.004031286,
+            "p25": 0.003607299,
+            "p75": 0.004066698,
+            "min": 0.003469134,
+            "max": 0.004649136
+          }
+        },
+        "h2": {
+          "n_excited": 5,
+          "median_hz": 16.00076,
+          "p25_hz": 16.000447,
+          "p75_hz": 16.295775,
+          "min_hz": 15.979143,
+          "max_hz": 16.314464,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 0,
+            "median": 0.002521983,
+            "p25": 0.002200841,
+            "p75": 0.002765029,
+            "min": 0.002135987,
+            "max": 0.002816056
+          }
+        }
+      },
+      "recordings": [
+        {
+          "file": "SHMTS_202010050012.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 4e-09,
+          "fundamental": {
+            "f_peak_hz": 2.790266,
+            "snr": 47335.377,
+            "excited": true,
+            "zeta": 0.014263695,
+            "resolution_floor": 0.00559989,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.393187,
+            "snr": 26848.644,
+            "excited": true,
+            "zeta": 0.003469134,
+            "resolution_floor": 0.001166651,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 16.314464,
+            "snr": 12360.13,
+            "excited": true,
+            "zeta": 0.002200841,
+            "resolution_floor": 0.00095775,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202010051522.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 7.22e-07,
+          "fundamental": {
+            "f_peak_hz": 2.797259,
+            "snr": 15613.64,
+            "excited": true,
+            "zeta": 0.016401674,
+            "resolution_floor": 0.005585889,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.367579,
+            "snr": 478.865,
+            "excited": true,
+            "zeta": 0.004031286,
+            "resolution_floor": 0.001168886,
+            "resolvable": true
+          },
+          "h2": {
+            "f_peak_hz": 15.979143,
+            "snr": 876.954,
+            "excited": true,
+            "zeta": 0.002816056,
+            "resolution_floor": 0.000977849,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202010051932.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 3.1e-08,
+          "fundamental": {
+            "f_peak_hz": 2.802957,
+            "snr": 21929.866,
+            "excited": true,
+            "zeta": 0.013881475,
+            "resolution_floor": 0.005574534,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.388088,
+            "snr": 4312.727,
+            "excited": true,
+            "zeta": 0.004649136,
+            "resolution_floor": 0.001167096,
+            "resolvable": true
+          },
+          "h2": {
+            "f_peak_hz": 16.295775,
+            "snr": 4660.029,
+            "excited": true,
+            "zeta": 0.002521983,
+            "resolution_floor": 0.000958849,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202010061931.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 2e-09,
+          "fundamental": {
+            "f_peak_hz": 2.808191,
+            "snr": 28548.352,
+            "excited": true,
+            "zeta": 0.012504776,
+            "resolution_floor": 0.005564144,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.419524,
+            "snr": 22998.177,
+            "excited": true,
+            "zeta": 0.004066698,
+            "resolution_floor": 0.001164362,
+            "resolvable": true
+          },
+          "h2": {
+            "f_peak_hz": 16.00076,
+            "snr": 12616.455,
+            "excited": true,
+            "zeta": 0.002765029,
+            "resolution_floor": 0.000976527,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202010080330.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 2.3e-08,
+          "fundamental": {
+            "f_peak_hz": 2.80172,
+            "snr": 38176.305,
+            "excited": true,
+            "zeta": 0.013566914,
+            "resolution_floor": 0.005576997,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.443297,
+            "snr": 4502.715,
+            "excited": true,
+            "zeta": 0.003607299,
+            "resolution_floor": 0.001162303,
+            "resolvable": true
+          },
+          "h2": {
+            "f_peak_hz": 16.000447,
+            "snr": 16187.592,
+            "excited": true,
+            "zeta": 0.002135987,
+            "resolution_floor": 0.000976547,
+            "resolvable": false
+          }
+        }
+      ]
+    },
+    "02_DAM6_111": {
+      "campaign": "dam6",
+      "state": "dam6",
+      "n_recordings": 5,
+      "modes": {
+        "fundamental": {
+          "n_excited": 5,
+          "median_hz": 2.768455,
+          "p25_hz": 2.756642,
+          "p75_hz": 2.769317,
+          "min_hz": 2.753374,
+          "max_hz": 2.777726,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 1,
+            "median": 0.015215566,
+            "p25": 0.014193968,
+            "p75": 0.015328449,
+            "min": 0.011962852,
+            "max": 0.017523342
+          }
+        },
+        "h1": {
+          "n_excited": 5,
+          "median_hz": 11.644443,
+          "p25_hz": 11.641051,
+          "p75_hz": 11.645614,
+          "min_hz": 11.640271,
+          "max_hz": 11.647961,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 0,
+            "median": 0.002901799,
+            "p25": 0.002709692,
+            "p75": 0.002946444,
+            "min": 0.002410994,
+            "max": 0.003022845
+          }
+        },
+        "h2": {
+          "n_excited": 5,
+          "median_hz": 14.696821,
+          "p25_hz": 14.300074,
+          "p75_hz": 14.698055,
+          "min_hz": 14.29999,
+          "max_hz": 14.721155,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 0,
+            "median": 0.002752416,
+            "p25": 0.002465451,
+            "p75": 0.002772025,
+            "min": 0.002205299,
+            "max": 0.002795439
+          }
+        }
+      },
+      "recordings": [
+        {
+          "file": "SHMTS_202010140009.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 3.3e-08,
+          "fundamental": {
+            "f_peak_hz": 2.756642,
+            "snr": 15638.488,
+            "excited": true,
+            "zeta": 0.014193968,
+            "resolution_floor": 0.005668193,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 11.645614,
+            "snr": 37239.204,
+            "excited": true,
+            "zeta": 0.002709692,
+            "resolution_floor": 0.001341722,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 14.300074,
+            "snr": 12151.807,
+            "excited": true,
+            "zeta": 0.002795439,
+            "resolution_floor": 0.001092664,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202010141759.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 2.14e-07,
+          "fundamental": {
+            "f_peak_hz": 2.768455,
+            "snr": 22541.421,
+            "excited": true,
+            "zeta": 0.017523342,
+            "resolution_floor": 0.005644009,
+            "resolvable": true
+          },
+          "h1": {
+            "f_peak_hz": 11.640271,
+            "snr": 3245.23,
+            "excited": true,
+            "zeta": 0.003022845,
+            "resolution_floor": 0.001342338,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 14.696821,
+            "snr": 2773.726,
+            "excited": true,
+            "zeta": 0.002465451,
+            "resolution_floor": 0.001063167,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202010150419.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 2.99e-07,
+          "fundamental": {
+            "f_peak_hz": 2.753374,
+            "snr": 15428.906,
+            "excited": true,
+            "zeta": 0.011962852,
+            "resolution_floor": 0.005674921,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 11.644443,
+            "snr": 2618.301,
+            "excited": true,
+            "zeta": 0.002901799,
+            "resolution_floor": 0.001341857,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 14.698055,
+            "snr": 1123.529,
+            "excited": true,
+            "zeta": 0.002772025,
+            "resolution_floor": 0.001063078,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202010161008.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 3e-09,
+          "fundamental": {
+            "f_peak_hz": 2.769317,
+            "snr": 22867.925,
+            "excited": true,
+            "zeta": 0.015328449,
+            "resolution_floor": 0.005642251,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 11.641051,
+            "snr": 191090.881,
+            "excited": true,
+            "zeta": 0.002946444,
+            "resolution_floor": 0.001342248,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 14.29999,
+            "snr": 41456.75,
+            "excited": true,
+            "zeta": 0.002752416,
+            "resolution_floor": 0.001092671,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202010191806.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 1e-09,
+          "fundamental": {
+            "f_peak_hz": 2.777726,
+            "snr": 35878.336,
+            "excited": true,
+            "zeta": 0.015215566,
+            "resolution_floor": 0.00562517,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 11.647961,
+            "snr": 371474.778,
+            "excited": true,
+            "zeta": 0.002410994,
+            "resolution_floor": 0.001341452,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 14.721155,
+            "snr": 28188.769,
+            "excited": true,
+            "zeta": 0.002205299,
+            "resolution_floor": 0.00106141,
+            "resolvable": false
+          }
+        }
+      ]
+    },
+    "05_Healthy": {
+      "campaign": "dam3",
+      "state": "healthy",
+      "n_recordings": 5,
+      "modes": {
+        "fundamental": {
+          "n_excited": 5,
+          "median_hz": 2.791746,
+          "p25_hz": 2.789951,
+          "p75_hz": 2.800535,
+          "min_hz": 2.786471,
+          "max_hz": 2.80859,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 0,
+            "median": 0.014699098,
+            "p25": 0.01338961,
+            "p75": 0.014920236,
+            "min": 0.012660348,
+            "max": 0.015080158
+          }
+        },
+        "h1": {
+          "n_excited": 5,
+          "median_hz": 13.552515,
+          "p25_hz": 13.541415,
+          "p75_hz": 13.553675,
+          "min_hz": 13.537293,
+          "max_hz": 13.553963,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 2,
+            "median": 0.003373878,
+            "p25": 0.003092537,
+            "p75": 0.003511171,
+            "min": 0.002773796,
+            "max": 0.003940924
+          }
+        },
+        "h2": {
+          "n_excited": 5,
+          "median_hz": 15.98875,
+          "p25_hz": 15.982038,
+          "p75_hz": 16.026217,
+          "min_hz": 15.981385,
+          "max_hz": 16.02643,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 5,
+            "median": 0.003665001,
+            "p25": 0.003279003,
+            "p75": 0.003793077,
+            "min": 0.003132185,
+            "max": 0.004307725
+          }
+        }
+      },
+      "recordings": [
+        {
+          "file": "SHMTS_202103100004.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 0.0,
+          "fundamental": {
+            "f_peak_hz": 2.789951,
+            "snr": 3610.675,
+            "excited": true,
+            "zeta": 0.012660348,
+            "resolution_floor": 0.005600521,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.552515,
+            "snr": 236.43,
+            "excited": true,
+            "zeta": 0.003511171,
+            "resolution_floor": 0.001152936,
+            "resolvable": true
+          },
+          "h2": {
+            "f_peak_hz": 16.026217,
+            "snr": 256.32,
+            "excited": true,
+            "zeta": 0.003132185,
+            "resolution_floor": 0.000974976,
+            "resolvable": true
+          }
+        },
+        {
+          "file": "SHMTS_202103101523.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 1.3e-07,
+          "fundamental": {
+            "f_peak_hz": 2.800535,
+            "snr": 8539.262,
+            "excited": true,
+            "zeta": 0.015080158,
+            "resolution_floor": 0.005579357,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.541415,
+            "snr": 3211.835,
+            "excited": true,
+            "zeta": 0.003373878,
+            "resolution_floor": 0.001153881,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 16.02643,
+            "snr": 2186.142,
+            "excited": true,
+            "zeta": 0.003279003,
+            "resolution_floor": 0.000974963,
+            "resolvable": true
+          }
+        },
+        {
+          "file": "SHMTS_202103110713.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 1.583e-06,
+          "fundamental": {
+            "f_peak_hz": 2.786471,
+            "snr": 13447.491,
+            "excited": true,
+            "zeta": 0.01338961,
+            "resolution_floor": 0.005607515,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.537293,
+            "snr": 722.382,
+            "excited": true,
+            "zeta": 0.003940924,
+            "resolution_floor": 0.001154232,
+            "resolvable": true
+          },
+          "h2": {
+            "f_peak_hz": 15.981385,
+            "snr": 259.949,
+            "excited": true,
+            "zeta": 0.003793077,
+            "resolution_floor": 0.000977711,
+            "resolvable": true
+          }
+        },
+        {
+          "file": "SHMTS_202103120243.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 2.414e-06,
+          "fundamental": {
+            "f_peak_hz": 2.791746,
+            "snr": 21731.477,
+            "excited": true,
+            "zeta": 0.014920236,
+            "resolution_floor": 0.005596921,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.553675,
+            "snr": 2288.297,
+            "excited": true,
+            "zeta": 0.002773796,
+            "resolution_floor": 0.001152837,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 15.982038,
+            "snr": 205.314,
+            "excited": true,
+            "zeta": 0.004307725,
+            "resolution_floor": 0.000977671,
+            "resolvable": true
+          }
+        },
+        {
+          "file": "SHMTS_202103150101.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 5.01e-07,
+          "fundamental": {
+            "f_peak_hz": 2.80859,
+            "snr": 12318.098,
+            "excited": true,
+            "zeta": 0.014699098,
+            "resolution_floor": 0.005563355,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.553963,
+            "snr": 1100.104,
+            "excited": true,
+            "zeta": 0.003092537,
+            "resolution_floor": 0.001152813,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 15.98875,
+            "snr": 679.234,
+            "excited": true,
+            "zeta": 0.003665001,
+            "resolution_floor": 0.000977261,
+            "resolvable": true
+          }
+        }
+      ]
+    },
+    "06_DAM3_111": {
+      "campaign": "dam3",
+      "state": "dam3",
+      "n_recordings": 5,
+      "modes": {
+        "fundamental": {
+          "n_excited": 5,
+          "median_hz": 2.792383,
+          "p25_hz": 2.776613,
+          "p75_hz": 2.794075,
+          "min_hz": 2.773661,
+          "max_hz": 2.803182,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 0,
+            "median": 0.014363962,
+            "p25": 0.013708895,
+            "p75": 0.015305748,
+            "min": 0.013109364,
+            "max": 0.015989151
+          }
+        },
+        "h1": {
+          "n_excited": 5,
+          "median_hz": 12.524308,
+          "p25_hz": 12.518257,
+          "p75_hz": 12.524565,
+          "min_hz": 12.513807,
+          "max_hz": 12.544367,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 0,
+            "median": 0.00257485,
+            "p25": 0.002213214,
+            "p75": 0.002623113,
+            "min": 0.002106011,
+            "max": 0.002946195
+          }
+        },
+        "h2": {
+          "n_excited": 5,
+          "median_hz": 15.762068,
+          "p25_hz": 15.761858,
+          "p75_hz": 15.762349,
+          "min_hz": 14.159759,
+          "max_hz": 16.140557,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 5,
+            "median": 0.04959947,
+            "p25": 0.039279983,
+            "p75": 0.05932375,
+            "min": 0.035380703,
+            "max": 0.113695861
+          }
+        }
+      },
+      "recordings": [
+        {
+          "file": "SHMTS_202103190009.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 1e-09,
+          "fundamental": {
+            "f_peak_hz": 2.792383,
+            "snr": 19605.299,
+            "excited": true,
+            "zeta": 0.013708895,
+            "resolution_floor": 0.005595643,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 12.524565,
+            "snr": 545586.618,
+            "excited": true,
+            "zeta": 0.002213214,
+            "resolution_floor": 0.001247563,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 14.159759,
+            "snr": 28.035,
+            "excited": true,
+            "zeta": 0.113695861,
+            "resolution_floor": 0.001103492,
+            "resolvable": true
+          }
+        },
+        {
+          "file": "SHMTS_202103200038.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 0.0,
+          "fundamental": {
+            "f_peak_hz": 2.803182,
+            "snr": 2806.324,
+            "excited": true,
+            "zeta": 0.014363962,
+            "resolution_floor": 0.005574087,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 12.544367,
+            "snr": 612.566,
+            "excited": true,
+            "zeta": 0.002623113,
+            "resolution_floor": 0.001245593,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 15.761858,
+            "snr": 4.324,
+            "excited": true,
+            "zeta": 0.05932375,
+            "resolution_floor": 0.000991329,
+            "resolvable": true
+          }
+        },
+        {
+          "file": "SHMTS_202103200708.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 0.0,
+          "fundamental": {
+            "f_peak_hz": 2.773661,
+            "snr": 4166.354,
+            "excited": true,
+            "zeta": 0.013109364,
+            "resolution_floor": 0.005633415,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 12.524308,
+            "snr": 8371.601,
+            "excited": true,
+            "zeta": 0.002106011,
+            "resolution_floor": 0.001247588,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 15.762349,
+            "snr": 11.078,
+            "excited": true,
+            "zeta": 0.04959947,
+            "resolution_floor": 0.000991298,
+            "resolvable": true
+          }
+        },
+        {
+          "file": "SHMTS_202103210228.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 2.42e-07,
+          "fundamental": {
+            "f_peak_hz": 2.776613,
+            "snr": 23400.738,
+            "excited": true,
+            "zeta": 0.015989151,
+            "resolution_floor": 0.005627425,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 12.513807,
+            "snr": 5426.099,
+            "excited": true,
+            "zeta": 0.002946195,
+            "resolution_floor": 0.001248635,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 16.140557,
+            "snr": 23.56,
+            "excited": true,
+            "zeta": 0.039279983,
+            "resolution_floor": 0.00096807,
+            "resolvable": true
+          }
+        },
+        {
+          "file": "SHMTS_202103240111.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 7e-09,
+          "fundamental": {
+            "f_peak_hz": 2.794075,
+            "snr": 21334.12,
+            "excited": true,
+            "zeta": 0.015305748,
+            "resolution_floor": 0.005592255,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 12.518257,
+            "snr": 260752.537,
+            "excited": true,
+            "zeta": 0.00257485,
+            "resolution_floor": 0.001248191,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 15.762068,
+            "snr": 446.008,
+            "excited": true,
+            "zeta": 0.035380703,
+            "resolution_floor": 0.000991315,
+            "resolvable": true
+          }
+        }
+      ]
+    },
+    "03_Healthy": {
+      "campaign": "dam4",
+      "state": "healthy",
+      "n_recordings": 5,
+      "modes": {
+        "fundamental": {
+          "n_excited": 5,
+          "median_hz": 2.798817,
+          "p25_hz": 2.797824,
+          "p75_hz": 2.801928,
+          "min_hz": 2.795131,
+          "max_hz": 2.806255,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 0,
+            "median": 0.014900461,
+            "p25": 0.014594895,
+            "p75": 0.01545993,
+            "min": 0.014083378,
+            "max": 0.015964815
+          }
+        },
+        "h1": {
+          "n_excited": 5,
+          "median_hz": 13.521483,
+          "p25_hz": 13.514086,
+          "p75_hz": 13.529024,
+          "min_hz": 13.512886,
+          "max_hz": 13.534227,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 1,
+            "median": 0.003280004,
+            "p25": 0.003087832,
+            "p75": 0.003380257,
+            "min": 0.002893782,
+            "max": 0.004386319
+          }
+        },
+        "h2": {
+          "n_excited": 5,
+          "median_hz": 16.010348,
+          "p25_hz": 16.006972,
+          "p75_hz": 16.025801,
+          "min_hz": 16.002852,
+          "max_hz": 16.334828,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 1,
+            "median": 0.002613066,
+            "p25": 0.002577436,
+            "p75": 0.002777987,
+            "min": 0.001908836,
+            "max": 0.00290109
+          }
+        }
+      },
+      "recordings": [
+        {
+          "file": "SHMTS_202011010004.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 1.1e-08,
+          "fundamental": {
+            "f_peak_hz": 2.801928,
+            "snr": 42141.449,
+            "excited": true,
+            "zeta": 0.014083378,
+            "resolution_floor": 0.005576581,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.529024,
+            "snr": 25179.427,
+            "excited": true,
+            "zeta": 0.003087832,
+            "resolution_floor": 0.001154938,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 16.334828,
+            "snr": 9546.624,
+            "excited": true,
+            "zeta": 0.00290109,
+            "resolution_floor": 0.000956556,
+            "resolvable": true
+          }
+        },
+        {
+          "file": "SHMTS_202011011523.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 2.38e-07,
+          "fundamental": {
+            "f_peak_hz": 2.798817,
+            "snr": 9671.981,
+            "excited": true,
+            "zeta": 0.01545993,
+            "resolution_floor": 0.005582781,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.512886,
+            "snr": 1350.475,
+            "excited": true,
+            "zeta": 0.003380257,
+            "resolution_floor": 0.001156317,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 16.002852,
+            "snr": 2463.954,
+            "excited": true,
+            "zeta": 0.002613066,
+            "resolution_floor": 0.0009764,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202011020023.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 1.1e-08,
+          "fundamental": {
+            "f_peak_hz": 2.795131,
+            "snr": 29989.226,
+            "excited": true,
+            "zeta": 0.014900461,
+            "resolution_floor": 0.005590143,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.521483,
+            "snr": 11753.425,
+            "excited": true,
+            "zeta": 0.002893782,
+            "resolution_floor": 0.001155582,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 16.006972,
+            "snr": 20836.853,
+            "excited": true,
+            "zeta": 0.001908836,
+            "resolution_floor": 0.000976148,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202011020653.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 2.92e-07,
+          "fundamental": {
+            "f_peak_hz": 2.797824,
+            "snr": 46546.792,
+            "excited": true,
+            "zeta": 0.014594895,
+            "resolution_floor": 0.005584762,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.514086,
+            "snr": 808.336,
+            "excited": true,
+            "zeta": 0.004386319,
+            "resolution_floor": 0.001156214,
+            "resolvable": true
+          },
+          "h2": {
+            "f_peak_hz": 16.010348,
+            "snr": 2639.435,
+            "excited": true,
+            "zeta": 0.002777987,
+            "resolution_floor": 0.000975943,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202011052351.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 3e-09,
+          "fundamental": {
+            "f_peak_hz": 2.806255,
+            "snr": 31369.603,
+            "excited": true,
+            "zeta": 0.015964815,
+            "resolution_floor": 0.005567984,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 13.534227,
+            "snr": 20095.764,
+            "excited": true,
+            "zeta": 0.003280004,
+            "resolution_floor": 0.001154494,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 16.025801,
+            "snr": 24368.013,
+            "excited": true,
+            "zeta": 0.002577436,
+            "resolution_floor": 0.000975002,
+            "resolvable": false
+          }
+        }
+      ]
+    },
+    "04_DAM4_111": {
+      "campaign": "dam4",
+      "state": "dam4",
+      "n_recordings": 5,
+      "modes": {
+        "fundamental": {
+          "n_excited": 5,
+          "median_hz": 2.768764,
+          "p25_hz": 2.765444,
+          "p75_hz": 2.77398,
+          "min_hz": 2.763871,
+          "max_hz": 2.78608,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 1,
+            "median": 0.01654576,
+            "p25": 0.015907584,
+            "p75": 0.016698027,
+            "min": 0.015552492,
+            "max": 0.016906915
+          }
+        },
+        "h1": {
+          "n_excited": 5,
+          "median_hz": 12.394709,
+          "p25_hz": 12.38466,
+          "p75_hz": 12.395983,
+          "min_hz": 12.37818,
+          "max_hz": 12.40425,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 0,
+            "median": 0.002452767,
+            "p25": 0.002335693,
+            "p75": 0.002554347,
+            "min": 0.002005281,
+            "max": 0.002885302
+          }
+        },
+        "h2": {
+          "n_excited": 5,
+          "median_hz": 16.221509,
+          "p25_hz": 16.210902,
+          "p75_hz": 16.221668,
+          "min_hz": 15.890662,
+          "max_hz": 16.223382,
+          "zeta": {
+            "n": 5,
+            "n_resolvable": 0,
+            "median": 0.002120163,
+            "p25": 0.001974144,
+            "p75": 0.00247128,
+            "min": 0.001923881,
+            "max": 0.002613793
+          }
+        }
+      },
+      "recordings": [
+        {
+          "file": "SHMTS_202011100008.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 7.2e-08,
+          "fundamental": {
+            "f_peak_hz": 2.763871,
+            "snr": 15468.702,
+            "excited": true,
+            "zeta": 0.016698027,
+            "resolution_floor": 0.005653369,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 12.394709,
+            "snr": 9396.025,
+            "excited": true,
+            "zeta": 0.002885302,
+            "resolution_floor": 0.001260633,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 16.221668,
+            "snr": 13918.541,
+            "excited": true,
+            "zeta": 0.002120163,
+            "resolution_floor": 0.000963229,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202011110407.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 1e-09,
+          "fundamental": {
+            "f_peak_hz": 2.78608,
+            "snr": 6066.787,
+            "excited": true,
+            "zeta": 0.016906915,
+            "resolution_floor": 0.005608303,
+            "resolvable": true
+          },
+          "h1": {
+            "f_peak_hz": 12.40425,
+            "snr": 31141.455,
+            "excited": true,
+            "zeta": 0.002005281,
+            "resolution_floor": 0.001259663,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 16.223382,
+            "snr": 2261.886,
+            "excited": true,
+            "zeta": 0.001923881,
+            "resolution_floor": 0.000963127,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202011111157.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 6e-09,
+          "fundamental": {
+            "f_peak_hz": 2.765444,
+            "snr": 8603.051,
+            "excited": true,
+            "zeta": 0.015552492,
+            "resolution_floor": 0.005650153,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 12.37818,
+            "snr": 76018.631,
+            "excited": true,
+            "zeta": 0.002335693,
+            "resolution_floor": 0.001262317,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 15.890662,
+            "snr": 8557.28,
+            "excited": true,
+            "zeta": 0.00247128,
+            "resolution_floor": 0.000983293,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202011130806.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 6e-09,
+          "fundamental": {
+            "f_peak_hz": 2.768764,
+            "snr": 16025.901,
+            "excited": true,
+            "zeta": 0.015907584,
+            "resolution_floor": 0.005643378,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 12.395983,
+            "snr": 303695.952,
+            "excited": true,
+            "zeta": 0.002452767,
+            "resolution_floor": 0.001260504,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 16.221509,
+            "snr": 20302.321,
+            "excited": true,
+            "zeta": 0.001974144,
+            "resolution_floor": 0.000963238,
+            "resolvable": false
+          }
+        },
+        {
+          "file": "SHMTS_202011151825.mat",
+          "fs_hz": 1651.6129032258063,
+          "duration_s": 599.78,
+          "noise_floor": 6.45e-07,
+          "fundamental": {
+            "f_peak_hz": 2.77398,
+            "snr": 28053.095,
+            "excited": true,
+            "zeta": 0.01654576,
+            "resolution_floor": 0.005632767,
+            "resolvable": false
+          },
+          "h1": {
+            "f_peak_hz": 12.38466,
+            "snr": 6366.973,
+            "excited": true,
+            "zeta": 0.002554347,
+            "resolution_floor": 0.001261656,
+            "resolvable": false
+          },
+          "h2": {
+            "f_peak_hz": 16.210902,
+            "snr": 1443.16,
+            "excited": true,
+            "zeta": 0.002613793,
+            "resolution_floor": 0.000963869,
+            "resolvable": false
+          }
+        }
+      ]
+    }
+  },
+  "campaigns": {
+    "dam6": {
+      "healthy": "01_Healthy",
+      "damaged": "02_DAM6_111",
+      "modes": {
+        "fundamental": {
+          "healthy_median_hz": 2.80172,
+          "damaged_median_hz": 2.768455,
+          "shift_hz": -0.033265,
+          "shift_pct": -1.187
+        },
+        "h1": {
+          "healthy_median_hz": 13.393187,
+          "damaged_median_hz": 11.644443,
+          "shift_hz": -1.748744,
+          "shift_pct": -13.057
+        },
+        "h2": {
+          "healthy_median_hz": 16.00076,
+          "damaged_median_hz": 14.696821,
+          "shift_hz": -1.303939,
+          "shift_pct": -8.149
+        }
+      }
+    },
+    "dam3": {
+      "healthy": "05_Healthy",
+      "damaged": "06_DAM3_111",
+      "modes": {
+        "fundamental": {
+          "healthy_median_hz": 2.791746,
+          "damaged_median_hz": 2.792383,
+          "shift_hz": 0.000637,
+          "shift_pct": 0.023
+        },
+        "h1": {
+          "healthy_median_hz": 13.552515,
+          "damaged_median_hz": 12.524308,
+          "shift_hz": -1.028207,
+          "shift_pct": -7.587
+        },
+        "h2": {
+          "healthy_median_hz": 15.98875,
+          "damaged_median_hz": 15.762068,
+          "shift_hz": -0.226682,
+          "shift_pct": -1.418
+        }
+      }
+    },
+    "dam4": {
+      "healthy": "03_Healthy",
+      "damaged": "04_DAM4_111",
+      "modes": {
+        "fundamental": {
+          "healthy_median_hz": 2.798817,
+          "damaged_median_hz": 2.768764,
+          "shift_hz": -0.030053,
+          "shift_pct": -1.074
+        },
+        "h1": {
+          "healthy_median_hz": 13.521483,
+          "damaged_median_hz": 12.394709,
+          "shift_hz": -1.126774,
+          "shift_pct": -8.333
+        },
+        "h2": {
+          "healthy_median_hz": 16.010348,
+          "damaged_median_hz": 16.221509,
+          "shift_hz": 0.211161,
+          "shift_pct": 1.319
+        }
+      }
+    }
+  },
+  "caveats": [
+    "Medians over 5 recordings per state; one field campaign per damage state, so seasonal/wind confounds apply and the three healthy sets are NOT interchangeable - each archive ships its own healthy recordings (Oct-2020, Nov-2020, Mar-2021). Only paired within-campaign comparisons are valid.",
+    "A mode below the 3x SNR gate contributes no frequency for that recording (n_excited < n_recordings); unexcited modes are excluded, never zero-filled. All 30 LUMO recordings cleared the gate for all three modes, so here n_excited == n_recordings == 5 in every state.",
+    "Single-recording reproducibility is limited by the 0.0313 Hz PSD bin; the per-state p25/p75 spread is dominated by ambient-excitation differences between recordings, not by the estimator.",
+    "The h1 shifts are large and robust (-7.6 % DAM3, -8.3 % DAM4, -13.1 % DAM6), but h1 has no Table 2 counterpart. The h2 / paper-B2-y shift for DAM3 and DAM4 is only +1.32 % and -1.42 % here (-0.31 % and +0.82 % in the paper's own rows), inside the 0.25 Hz frequency grid of the forced-excitation tests (+-0.8 % at 16.1 Hz), so only DAM6 has a clearly resolvable B2-y shift. Snapping these same recordings to that 0.25 Hz grid gives healthy 2.7502/13.5009/16.101 and DAM6 2.7502/11.7508/14.551, i.e. within 0.15 Hz of the medians here.",
+    "The paper's Table 2 frequencies are SSI-COV identifications on y-direction data and are not the same quantity: only h2 (~16 Hz) maps one-to-one onto B2-y, h1 has no Table 2 counterpart, and the paper reports no damping ratios for LUMO. See lumo_frequencies.json -> mode_mapping.",
+    "The peak frequency and the half-power damping ratio come from the same evaluation of the spectrum; both are stored per recording here (`f_peak_hz` and `zeta`), each with the `resolution_floor` that one PSD bin would produce. zeta is only meaningful above that floor, and at nperseg = 32 s the floor is df / (2 f_peak), so low-frequency modes are unresolvable by construction - the `resolvable` flag (zeta > 3 x floor) is emitted per recording so that this is visible rather than assumed. `lumo_sds.py` computes the damping discrimination scores from these zeta values."
+  ],
+  "cross_check_vs_lumo_frequencies": {
+    "reference": "lumo_frequencies.json",
+    "reference_schema": "lumo_frequencies/v1",
+    "tolerance_hz": 0.0005,
+    "n_checked": 18,
+    "n_matched": 18,
+    "all_match": true,
+    "detail": {
+      "01_Healthy": {
+        "fundamental": {
+          "computed_hz": 2.80172,
+          "reference_hz": 2.802,
+          "delta_hz": -0.00028,
+          "match": true
+        },
+        "h1": {
+          "computed_hz": 13.393187,
+          "reference_hz": 13.393,
+          "delta_hz": 0.000187,
+          "match": true
+        },
+        "h2": {
+          "computed_hz": 16.00076,
+          "reference_hz": 16.001,
+          "delta_hz": -0.00024,
+          "match": true
+        }
+      },
+      "02_DAM6_111": {
+        "fundamental": {
+          "computed_hz": 2.768455,
+          "reference_hz": 2.768,
+          "delta_hz": 0.000455,
+          "match": true
+        },
+        "h1": {
+          "computed_hz": 11.644443,
+          "reference_hz": 11.644,
+          "delta_hz": 0.000443,
+          "match": true
+        },
+        "h2": {
+          "computed_hz": 14.696821,
+          "reference_hz": 14.697,
+          "delta_hz": -0.000179,
+          "match": true
+        }
+      },
+      "03_Healthy": {
+        "fundamental": {
+          "computed_hz": 2.798817,
+          "reference_hz": 2.799,
+          "delta_hz": -0.000183,
+          "match": true
+        },
+        "h1": {
+          "computed_hz": 13.521483,
+          "reference_hz": 13.521,
+          "delta_hz": 0.000483,
+          "match": true
+        },
+        "h2": {
+          "computed_hz": 16.010348,
+          "reference_hz": 16.01,
+          "delta_hz": 0.000348,
+          "match": true
+        }
+      },
+      "04_DAM4_111": {
+        "fundamental": {
+          "computed_hz": 2.768764,
+          "reference_hz": 2.769,
+          "delta_hz": -0.000236,
+          "match": true
+        },
+        "h1": {
+          "computed_hz": 12.394709,
+          "reference_hz": 12.395,
+          "delta_hz": -0.000291,
+          "match": true
+        },
+        "h2": {
+          "computed_hz": 16.221509,
+          "reference_hz": 16.222,
+          "delta_hz": -0.000491,
+          "match": true
+        }
+      },
+      "05_Healthy": {
+        "fundamental": {
+          "computed_hz": 2.791746,
+          "reference_hz": 2.792,
+          "delta_hz": -0.000254,
+          "match": true
+        },
+        "h1": {
+          "computed_hz": 13.552515,
+          "reference_hz": 13.553,
+          "delta_hz": -0.000485,
+          "match": true
+        },
+        "h2": {
+          "computed_hz": 15.98875,
+          "reference_hz": 15.989,
+          "delta_hz": -0.00025,
+          "match": true
+        }
+      },
+      "06_DAM3_111": {
+        "fundamental": {
+          "computed_hz": 2.792383,
+          "reference_hz": 2.792,
+          "delta_hz": 0.000383,
+          "match": true
+        },
+        "h1": {
+          "computed_hz": 12.524308,
+          "reference_hz": 12.524,
+          "delta_hz": 0.000308,
+          "match": true
+        },
+        "h2": {
+          "computed_hz": 15.762068,
+          "reference_hz": 15.762,
+          "delta_hz": 6.8e-05,
+          "match": true
+        }
+      }
+    }
+  }
+}
