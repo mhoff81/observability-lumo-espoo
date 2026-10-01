@@ -110,8 +110,14 @@ python3 code/lumo_damping_frequencies.py --root /path/to/lumo_data --verify
 Step 2: turns the frequencies and ζ values from `lumo_damping_frequencies.json`
 into the three 0–10 state-discrimination scores (`LUMO_H1_FREQUENCY`,
 `LUMO_H1_DAMPING`, `LUMO_H2_DAMPING`) via Cliff's delta between healthy and
-damaged recordings, paired within each field campaign. Standard library only;
-reads no dataset, just the JSON step 1 wrote.
+damaged recordings, paired within each field campaign. Also computes the
+whole-tower gamma2 coherence channel's SDS from `../data/lumo_channels.csv`
+(via `recompute_lumo_coherence_states.recompute()`): per-state Cliff's deltas
+against the pooled healthy population, the max-pairwise SDS (paper's "1.39" /
+Table 4's "1.4"), and the pooled Healthy-vs-all-damaged SDS ("0.10"). Both
+channel families are verified against the single `../data/lumo_sds_expected.json`
+reference (`channels` block for the modal scores, `gamma2` block for the
+coherence scores).
 
 ```bash
 python3 code/lumo_sds.py --verify --explain

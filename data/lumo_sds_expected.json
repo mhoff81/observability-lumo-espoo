@@ -35,5 +35,15 @@
         "dam6": { "delta": 0.2 }
       }
     }
+  },
+  "gamma2": {
+    "note": "Hand-pinned reference for the whole-tower gamma2 coherence channel, transcribed from the paper (Table 4 and Section 4.1): 'the maximum pairwise SDS was 1.39 for Healthy versus DAM3, whereas the pooled Healthy-versus-all-damaged comparison yielded SDS = 0.10'.",
+    "per_state": {
+      "DAM3": {"delta": 0.139173554, "sds": 1.391735537},
+      "DAM4": {"delta": -0.05268595, "sds": 0.526859504},
+      "DAM6": {"delta": -0.128099174, "sds": 1.280991736}
+    },
+    "max_pairwise_sds": 1.391735537,
+    "pooled": {"sds": 0.102943309}
   }
 }
