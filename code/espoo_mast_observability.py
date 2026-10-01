@@ -46,8 +46,8 @@ discriminator this analysis keys on:
 
 # Reference: LUMO (the project's only state-labelled tower)
 
-Taken from `lumo_dam6_analysis/lumo_tower_coherence_states.md` (identical
-estimator, 482 real bursts, 9 m mast, open ground):
+Taken from `lumo_tower_coherence_states.md` (an external, not-included
+generator's output; identical estimator, 482 real bursts, 9 m mast, open ground):
 
     healthy  gamma^2 median 0.0379 [0.0085, 0.1410], n_masked median 19  (n=322)
     ASC 0.0617 (n=80)  vs  DESC 0.0261 (n=242)
@@ -544,23 +544,6 @@ def main():
         "passes": [], "total_acquisitions": None, "status": "unknown",
         "fundamental_hz": 15.18239714298073, "node_count": 6, "element_count": 9,
     }
-    try:  # prefer live request metadata when the local DB is reachable
-        import subprocess
-        sql = ("select time_start, time_end, cadence, array_to_string(passes,','), "
-               "total_acquisitions, status from onboarder.insar_monitoring_requests "
-               f"where id='{args.request_id}';")
-        out = subprocess.run(
-            ["docker", "exec", "tower-postgres", "psql", "-U", "tower", "-d", "tower",
-             "-t", "-A", "-F", "|", "-c", sql],
-            capture_output=True, text=True, timeout=30)
-        if out.returncode == 0 and out.stdout.strip():
-            f = out.stdout.strip().splitlines()[0].split("|")
-            prov.update({"time_start": f[0], "time_end": f[1], "cadence": f[2],
-                         "passes": f[3].split(",") if len(f) > 3 and f[3] else [],
-                         "total_acquisitions": int(f[4]) if len(f) > 4 and f[4].isdigit() else None,
-                         "status": f[5] if len(f) > 5 else "unknown"})
-    except Exception as exc:
-        print(f"request metadata lookup skipped: {exc}")
 
     n_total = len(rows)
     if prov.get("status") == "running" or n_total < 20:

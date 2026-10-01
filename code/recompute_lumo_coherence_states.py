@@ -2,7 +2,7 @@
 """Recompute `lumo_tower_coherence_states.json` from `data/lumo_channels.csv`.
 
 This is a from-scratch port of `analyze_lumo_tower_coherence.py` (the original
-generator, kept outside this repository in `lumo_dam6_analysis/`), with one
+generator, kept outside this repository), with one
 change of input: the original reads the raw per-burst binary SLC cache
 (`monthly_bursts/<month>/<key>/{meta.json,strip.bin}`) and computes `gamma2` /
 `n_masked` / `peak_intensity` itself via `coherence_mast_echo()`. That cache is

@@ -2,7 +2,7 @@
 """Recompute `lumo_tower_monthly_amp_phase.json` from `data/lumo_channels.csv`.
 
 A from-scratch port of `build_lumo_tower_monthly_amp_phase.py` (the original
-generator, kept outside this repository in `lumo_dam6_analysis/`), with one
+generator, kept outside this repository), with one
 change of input: the original reads the raw per-burst binary SLC cache
 (`monthly_bursts/<month>/<key>/{meta.json,window.bin,strip.bin}`) via
 `analyze_burst()` to compute `amplitude`, `phase_rad`, `sub_aperture_brightness`
@@ -86,7 +86,7 @@ def _native_burst(r):
 # Source metadata the original records in `source` (raw-cache paths this
 # repository does not hold) - documented constants, not recomputed.
 SOURCE_META = {
-    "database": "/home/projects/lumo_dam6_analysis/monthly_bursts",
+    "database": "monthly_bursts (local raw-cache, not part of this repository)",
     "cached_burst_count": 482,
     "dedup": "record-level identity = (acquisition minute, orbit, "
              "polarisation); pseudo-replicate bursts (same overpass listed "

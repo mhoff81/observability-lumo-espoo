@@ -51,7 +51,7 @@ python3 code/figures_data_csv.py --selftest  # offline: contract, codec, artifac
 Recomputes `lumo_tower_coherence_states.json`'s aggregate statistics
 (`per_state`, `tests`, `per_orbit`, `desc_tests`, `wind_control`) from
 `data/lumo_channels.csv`'s `coherence` rows alone — a from-scratch port of the
-external `lumo_dam6_analysis/analyze_lumo_tower_coherence.py` generator that
+external, not-included `analyze_lumo_tower_coherence.py` generator that
 needs no raw binary SLC cache, because every field that script's statistics
 need is already a flat CSV column. Two metadata fields that describe the raw
 cache this repository does not hold (`n_bursts_cached`, `n_skipped`) are
@@ -72,8 +72,8 @@ Recomputes `lumo_tower_monthly_amp_phase.json` in full (`state_analysis`,
 `phase_interferometry_tests`, `shm_correlation_test`, `filtered_analysis`,
 `wind_slope_state_test`, `polarization_analysis`, `bessel_aperture_analysis` and
 the `monthly` strongest-candidate rollup) from `data/lumo_channels.csv`'s
-`burst` rows alone — a from-scratch port of the external
-`lumo_dam6_analysis/build_lumo_tower_monthly_amp_phase.py` generator. That
+`burst` rows alone — a from-scratch port of the external, not-included
+`build_lumo_tower_monthly_amp_phase.py` generator. That
 script's `analyze_burst()` needs the raw binary SLC cache this repository does
 not hold, but every field its ten analysis functions read (including the full
 `sub_aperture_brightness` block with its per-0.1-s-block `blocks` list, the
