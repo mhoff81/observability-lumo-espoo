@@ -3,11 +3,11 @@
 
 Combines the NEW damping-ratio measurements (half-power bandwidth from the raw
 Uni-Hannover SHM recordings, `data/lumo_damping_ratio.json`) with the existing
-SAR channels of the same states (all in the sibling `data/` directory):
+SAR channels of the same states, both recomputed from `data/lumo_channels.csv`:
 
-  * whole-tower coherence gamma2   (data/lumo_tower_coherence_states.json)
-  * intra-dwell brightness modulation (data/lumo_tower_monthly_amp_phase.json)
-  * SHM wind-response suppression  (data/wind_response_shm.json)
+  * whole-tower coherence gamma2      (recompute_lumo_coherence_states.recompute)
+  * intra-dwell brightness modulation (recompute_lumo_monthly_amp_phase.recompute)
+  * SHM wind-response suppression     (data/wind_response_shm.json)
 
 Tests the two proposed causal chains:
   M1  damage -> damping -> vibration response -> gamma2  (gamma2 as damping proxy)
@@ -23,6 +23,7 @@ Writes: ../data/lumo_damping_gamma2_modulation.json,
 """
 import json
 import os
+import sys
 
 import numpy as np
 
@@ -35,6 +36,11 @@ DATA_DIR = os.path.normpath(os.path.join(HERE, os.pardir, "data"))
 FIGURES_DIR = os.path.normpath(os.path.join(HERE, os.pardir, "figures"))
 LUMO6 = DATA_DIR  # the LUMO monthly/coherence/wind caches
 ZETA = os.path.join(DATA_DIR, "lumo_damping_ratio.json")
+LUMO_CSV = os.path.join(DATA_DIR, "lumo_channels.csv")
+
+sys.path.insert(0, HERE)
+import recompute_lumo_coherence_states as _coh_mod  # noqa: E402
+import recompute_lumo_monthly_amp_phase as _amp_mod  # noqa: E402
 
 MODULATION_LABELS = {"healthy": "healthy", "dam3": "DAM 3", "dam4": "DAM 4", "dam6": "DAM 6"}
 COH_LABELS = {"healthy": "DAM0(healthy)", "dam3": "DAM3", "dam4": "DAM4", "dam6": "DAM6"}
@@ -47,8 +53,8 @@ STATES = (("dam3", "dam3"), ("dam4", "dam4"), ("dam6", "dam6"))
 
 def load():
     zeta = json.load(open(ZETA))
-    coh = json.load(open(os.path.join(LUMO6, "lumo_tower_coherence_states.json")))
-    mod = json.load(open(os.path.join(LUMO6, "lumo_tower_monthly_amp_phase.json")))
+    coh = _coh_mod.recompute(LUMO_CSV)
+    mod = _amp_mod.recompute(LUMO_CSV)
     wind = json.load(open(os.path.join(LUMO6, "wind_response_shm.json")))
     return zeta, coh, mod, wind
 

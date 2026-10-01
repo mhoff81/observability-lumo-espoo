@@ -62,6 +62,30 @@ python3 code/recompute_lumo_coherence_states.py --check        # diff vs data/*.
 python3 code/recompute_lumo_coherence_states.py --out /tmp/x.json
 ```
 
+### `recompute_lumo_monthly_amp_phase.py`
+
+Recomputes `data/lumo_tower_monthly_amp_phase.json` in full (`state_analysis`,
+`modulation_analysis`, `wind_direction_analysis`, `falsification_tests`,
+`phase_interferometry_tests`, `shm_correlation_test`, `filtered_analysis`,
+`wind_slope_state_test`, `polarization_analysis`, `bessel_aperture_analysis` and
+the `monthly` strongest-candidate rollup) from `data/lumo_channels.csv`'s
+`burst` rows alone — a from-scratch port of the external
+`lumo_dam6_analysis/build_lumo_tower_monthly_amp_phase.py` generator. That
+script's `analyze_burst()` needs the raw binary SLC cache this repository does
+not hold, but every field its ten analysis functions read (including the full
+`sub_aperture_brightness` block with its per-0.1-s-block `blocks` list, the
+`filtered` amplitude variants, and the wind-direction/phase-RMS/displacement
+fields the original attaches in place from an Open-Meteo fetch and
+`lumo_tower_monthly_timeseries.json`) is already a flat CSV column, so none of
+that needs to be re-run. `data/wind_response_shm.json` is still read directly
+for the SHM-fit lookups. `source.cached_burst_count` (482, the pre-dedup raw
+cache size) is carried as a documented constant rather than recomputed.
+
+```bash
+python3 code/recompute_lumo_monthly_amp_phase.py --check        # diff vs data/*.json
+python3 code/recompute_lumo_monthly_amp_phase.py --out /tmp/x.json
+```
+
 ### `lumo_damping_frequencies.py`
 
 Step 1 of the LUMO modal analysis: computes the measured natural frequencies and
