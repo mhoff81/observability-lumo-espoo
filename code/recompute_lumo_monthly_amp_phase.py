@@ -1174,6 +1174,12 @@ def _close(a, b, rel=1e-9, abs_tol=1e-9):
 
 
 def _check(rebuilt, original_path):
+    if not os.path.isfile(original_path):
+        print(f"error: no reference JSON at {original_path} to check against "
+              "(it was removed from data/ once lumo_damping_gamma2_modulation.py "
+              "switched to reading this script's recompute() directly; restore "
+              "it from git history if you need to re-verify)", file=sys.stderr)
+        raise SystemExit(3)
     with open(original_path) as fh:
         original = json.load(fh)
     fails = []

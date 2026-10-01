@@ -48,23 +48,26 @@ python3 code/figures_data_csv.py --selftest  # offline: contract, codec, artifac
 
 ### `recompute_lumo_coherence_states.py`
 
-Recomputes `data/lumo_tower_coherence_states.json`'s aggregate statistics
+Recomputes `lumo_tower_coherence_states.json`'s aggregate statistics
 (`per_state`, `tests`, `per_orbit`, `desc_tests`, `wind_control`) from
 `data/lumo_channels.csv`'s `coherence` rows alone — a from-scratch port of the
 external `lumo_dam6_analysis/analyze_lumo_tower_coherence.py` generator that
 needs no raw binary SLC cache, because every field that script's statistics
 need is already a flat CSV column. Two metadata fields that describe the raw
 cache this repository does not hold (`n_bursts_cached`, `n_skipped`) are
-carried as documented constants rather than recomputed.
+carried as documented constants rather than recomputed. Its committed JSON has
+since been removed from `data/` — `lumo_damping_gamma2_modulation.py` (its last
+direct reader) now calls `recompute()` here in-memory instead, so `--check`
+needs the original restored from git history to diff against.
 
 ```bash
-python3 code/recompute_lumo_coherence_states.py --check        # diff vs data/*.json
+python3 code/recompute_lumo_coherence_states.py --check        # diff vs a restored data/*.json
 python3 code/recompute_lumo_coherence_states.py --out /tmp/x.json
 ```
 
 ### `recompute_lumo_monthly_amp_phase.py`
 
-Recomputes `data/lumo_tower_monthly_amp_phase.json` in full (`state_analysis`,
+Recomputes `lumo_tower_monthly_amp_phase.json` in full (`state_analysis`,
 `modulation_analysis`, `wind_direction_analysis`, `falsification_tests`,
 `phase_interferometry_tests`, `shm_correlation_test`, `filtered_analysis`,
 `wind_slope_state_test`, `polarization_analysis`, `bessel_aperture_analysis` and
@@ -79,10 +82,14 @@ fields the original attaches in place from an Open-Meteo fetch and
 `lumo_tower_monthly_timeseries.json`) is already a flat CSV column, so none of
 that needs to be re-run. `data/wind_response_shm.json` is still read directly
 for the SHM-fit lookups. `source.cached_burst_count` (482, the pre-dedup raw
-cache size) is carried as a documented constant rather than recomputed.
+cache size) is carried as a documented constant rather than recomputed. Its
+committed JSON has since been removed from `data/` — `lumo_damping_gamma2_
+modulation.py` (its last direct reader) now calls `recompute()` here
+in-memory instead, so `--check` needs the original restored from git history
+to diff against.
 
 ```bash
-python3 code/recompute_lumo_monthly_amp_phase.py --check        # diff vs data/*.json
+python3 code/recompute_lumo_monthly_amp_phase.py --check        # diff vs a restored data/*.json
 python3 code/recompute_lumo_monthly_amp_phase.py --out /tmp/x.json
 ```
 
