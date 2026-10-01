@@ -110,14 +110,17 @@ python3 code/lumo_damping_frequencies.py --root /path/to/lumo_data --verify
 Step 2: turns the frequencies and ζ values from `lumo_damping_frequencies.json`
 into the three 0–10 state-discrimination scores (`LUMO_H1_FREQUENCY`,
 `LUMO_H1_DAMPING`, `LUMO_H2_DAMPING`) via Cliff's delta between healthy and
-damaged recordings, paired within each field campaign. Also computes the
-whole-tower gamma2 coherence channel's SDS from `../data/lumo_channels.csv`
-(via `recompute_lumo_coherence_states.recompute()`): per-state Cliff's deltas
-against the pooled healthy population, the max-pairwise SDS (paper's "1.39" /
-Table 4's "1.4"), and the pooled Healthy-vs-all-damaged SDS ("0.10"). Both
-channel families are verified against the single `../data/lumo_sds_expected.json`
-reference (`channels` block for the modal scores, `gamma2` block for the
-coherence scores).
+damaged recordings, paired within each field campaign. Also computes two
+whole-tower channels from `../data/lumo_channels.csv`, both using the same
+max-across-states aggregate (not the modal mean): the gamma2 coherence SDS
+(via `recompute_lumo_coherence_states.recompute()`; paper's "1.39" max pairwise
+/ Table 4's "1.4", pooled "0.10") and the phase coherence SDS (via
+`recompute_lumo_monthly_amp_phase.recompute()`'s `phase_coherence` field; the
+reproducible pooled Healthy-vs-all-damaged value is 0.91 - this was found to
+disagree with the paper's current "1.04" and is pending a paper correction).
+All three channel families are verified against the single
+`../data/lumo_sds_expected.json` reference (`channels` block for the modal
+scores, `gamma2` and `phase_coherence` blocks for the two coherence channels).
 
 ```bash
 python3 code/lumo_sds.py --verify --explain

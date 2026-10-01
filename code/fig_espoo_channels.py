@@ -24,10 +24,10 @@ What is populated here and why the rest is not (verified against the DB):
   into the 8 intra-dwell blocks of the LUMO definition. The LUMO modulation
   values come from the LUMO campaign ingest, not from this window table.
 * **empty for this asset type** — `brightness_ratio`, `displacement_los_m`.
-* **own figure** — the dwell channel (Bessel brightness frequency vs the healthy
-  FEM baseline, the measured/expected amplitudes and the LUMO-style view) lives
-  in `fig_espoo_dwell.py` / `fig_espoo_dwell.md`. There, the phase-domain dwell
-  frequency (`phase_detected_frequency_hz`) is empty too, because the phase
+* **own figure, not part of this repository** — the dwell channel (Bessel
+  brightness frequency vs the healthy FEM baseline, the measured/expected
+  amplitudes and the LUMO-style view). For this Espoo mast, the phase-domain
+  dwell frequency (`phase_detected_frequency_hz`) is empty too, because the
   channel is `phase_observable = false` (reason `low_coherence`) although the
   full-dwell phase capture ran: 150 rows in `onboarder.insar_phase_sequences`,
   11-column strip, 0.8 s dwell, 49 adaptive sub-apertures

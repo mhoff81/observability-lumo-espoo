@@ -45,5 +45,15 @@
     },
     "max_pairwise_sds": 1.391735537,
     "pooled": {"sds": 0.102943309}
+  },
+  "phase_coherence": {
+    "note": "Reference for the whole-tower phase coherence channel's pooled Healthy-vs-all-damaged SDS, computed from data/lumo_channels.csv's burst-level phase_coherence field via recompute_lumo_monthly_amp_phase.recompute(). The paper's Section 5.2 text (as of 2026-10-01) reads 'a pooled SDS of 1.04' - this was found not to match the reproducible value below (0.91) and is pending a paper correction.",
+    "per_state": {
+      "DAM3": {"delta": 0.087851240, "sds": 0.878512397},
+      "DAM4": {"delta": 0.066890496, "sds": 0.668904959},
+      "DAM6": {"delta": 0.118801653, "sds": 1.188016529}
+    },
+    "max_pairwise_sds": 1.188016529,
+    "pooled": {"sds": 0.906553574}
   }
 }

@@ -58,25 +58,30 @@ Rust. The input JSON is the only file it reads; delete `lumo_sds_expected.json`
 and the numbers below do not move - that file is a pinned transcription used by
 `--verify`, never an input to the computation.
 
-GAMMA2 COHERENCE (same `cliffs_delta`, a different aggregate and input)
+GAMMA2 COHERENCE and PHASE COHERENCE (same `cliffs_delta`, a different aggregate
+and input)
 
-INPUT: `../data/lumo_channels.csv`'s `coherence` rows, read via
+INPUT (gamma2): `../data/lumo_channels.csv`'s `coherence` rows, read via
 `recompute_lumo_coherence_states.recompute()` - one row per overpass
 (burst-id/polarisation pseudo-replicates already collapsed), labelled healthy /
-DAM3 / DAM4 / DAM6. Unlike the SHM channels above, gamma2 has one pooled healthy
-population to compare against each damage state, not one healthy baseline per
-campaign, so:
+DAM3 / DAM4 / DAM6.
 
-    SDS_gamma2 = 10 * max(|delta_DAM3|, |delta_DAM4|, |delta_DAM6|)
+INPUT (phase coherence): the same CSV's `burst` rows' `phase_coherence` field,
+read via `recompute_lumo_monthly_amp_phase.recompute()`.
+
+Unlike the SHM channels above, both of these have one pooled healthy population
+to compare against each damage state, not one healthy baseline per campaign, so:
+
+    SDS = 10 * max(|delta_DAM3|, |delta_DAM4|, |delta_DAM6|)
 
 with the pooled Healthy-versus-all-damaged score (b = DAM3 + DAM4 + DAM6 pooled)
 reported alongside it, not folded into the max.
 
 USAGE
-  python3 lumo_sds.py                       # both tables on stdout
+  python3 lumo_sds.py                       # all tables on stdout
   python3 lumo_sds.py --explain             # also show the modal exclusion ON/OFF pair
   python3 lumo_sds.py --json lumo_sds.json  # write the combined JSON block to a file
-  python3 lumo_sds.py --verify              # compare both channels with the pinned values
+  python3 lumo_sds.py --verify              # compare all channels with the pinned values
   python3 lumo_sds.py --selftest            # check the metrics, needs no data
 
 Exit codes: 0 ok, 1 unusable --expected, 2 input JSON/CSV missing or
@@ -98,6 +103,8 @@ DEFAULT_CSV = os.path.join(DATA_DIR, "lumo_channels.csv")
 
 sys.path.insert(0, HERE)
 from recompute_lumo_coherence_states import recompute, STATE_ORDER, STATE_SHORT  # noqa: E402
+from recompute_lumo_monthly_amp_phase import (  # noqa: E402
+    recompute as recompute_amp_phase, DAMAGE_LABELS as PHASE_DAMAGE_LABELS)
 
 # --- The score: constants of the 0-10 discrimination scale -------------------
 SDS_SCALE = 10.0
@@ -244,24 +251,16 @@ def score(doc, exclusions=MODAL_EXCLUSIONS):
 
 
 # ----------------------------------------------------------------------------
-# Gamma2 coherence (max-based aggregate, pooled healthy population)
+# Max-based aggregate, pooled healthy population - gamma2 and phase coherence
 # ----------------------------------------------------------------------------
-def _gamma2_by_state(csv_path):
-    out = recompute(csv_path)
-    bursts = out["bursts"]
-    by_state = {lab: [b for b in bursts if b["damage_label"] == lab]
-                for lab in STATE_ORDER}
-    return {lab: [r["gamma2"] for r in recs] for lab, recs in by_state.items()}
-
-
-def score_gamma2(csv_path=DEFAULT_CSV):
-    """Per-state deltas/SDS, the reported max-pairwise SDS, and the pooled SDS."""
-    g2 = _gamma2_by_state(csv_path)
-    healthy = g2["healthy"]
+def _score_pooled_max(values_by_state, damage_states):
+    """Shared by gamma2 and phase coherence: per-state deltas/SDS against one
+    pooled healthy population, the max-pairwise SDS, and the pooled SDS."""
+    healthy = values_by_state["healthy"]
 
     per_state = {}
-    for lab in GAMMA2_DAMAGE_STATES:
-        damaged = g2[lab]
+    for lab in damage_states:
+        damaged = values_by_state[lab]
         delta = cliffs_delta(healthy, damaged)
         per_state[STATE_SHORT[lab]] = {
             "n_healthy": len(healthy), "n_damaged": len(damaged),
@@ -275,7 +274,7 @@ def score_gamma2(csv_path=DEFAULT_CSV):
     max_pairwise_state = next((name for name, row in per_state.items()
                                if row is best), None)
 
-    pooled_damaged = [v for lab in GAMMA2_DAMAGE_STATES for v in g2[lab]]
+    pooled_damaged = [v for lab in damage_states for v in values_by_state[lab]]
     pooled_delta = cliffs_delta(healthy, pooled_damaged)
     pooled_sds = None if pooled_delta is None else round(SDS_SCALE * abs(pooled_delta), 9)
 
@@ -292,8 +291,51 @@ def score_gamma2(csv_path=DEFAULT_CSV):
     }
 
 
+def _gamma2_by_state(csv_path):
+    out = recompute(csv_path)
+    bursts = out["bursts"]
+    by_state = {lab: [b for b in bursts if b["damage_label"] == lab]
+                for lab in STATE_ORDER}
+    return {lab: [r["gamma2"] for r in recs] for lab, recs in by_state.items()}
+
+
+def score_gamma2(csv_path=DEFAULT_CSV):
+    """Per-state deltas/SDS, the reported max-pairwise SDS, and the pooled SDS."""
+    return _score_pooled_max(_gamma2_by_state(csv_path), GAMMA2_DAMAGE_STATES)
+
+
+def _phase_coherence_by_state(csv_path):
+    out = recompute_amp_phase(csv_path)
+    bursts = out["bursts"]
+    by_state = {lab: [b for b in bursts if b["damage_label"] == lab]
+                for lab in PHASE_DAMAGE_LABELS}
+    return {lab: [r["phase_coherence"] for r in recs
+                 if r.get("phase_coherence") is not None]
+           for lab, recs in by_state.items()}
+
+
+def score_phase_coherence(csv_path=DEFAULT_CSV):
+    """Per-state deltas/SDS, the reported max-pairwise SDS, and the pooled SDS."""
+    return _score_pooled_max(_phase_coherence_by_state(csv_path), GAMMA2_DAMAGE_STATES)
+
+
 def render_gamma2_table(result):
     out = ["", "gamma2 coherence (whole tower, data/lumo_channels.csv):",
+          f"{'state':<14} {'n_healthy':>9} {'n_damaged':>9} {'delta':>10} {'sds':>8}"]
+    for name, row in result["per_state"].items():
+        out.append(f"{name:<14} {row['n_healthy']:>9} {row['n_damaged']:>9} "
+                   f"{row['delta']:>10.4f} {row['sds']:>8.4f}")
+    out.append("")
+    out.append(f"max pairwise SDS = {result['max_pairwise_sds']:.4f} "
+               f"(Healthy vs {result['max_pairwise_state']})")
+    pooled = result["pooled"]
+    out.append(f"pooled Healthy-vs-all-damaged SDS = {pooled['sds']:.4f} "
+               f"(n_damaged={pooled['n_damaged']})")
+    return "\n".join(out) + "\n"
+
+
+def render_phase_coherence_table(result):
+    out = ["", "phase coherence (whole tower, data/lumo_channels.csv):",
           f"{'state':<14} {'n_healthy':>9} {'n_damaged':>9} {'delta':>10} {'sds':>8}"]
     for name, row in result["per_state"].items():
         out.append(f"{name:<14} {row['n_healthy']:>9} {row['n_damaged']:>9} "
@@ -485,11 +527,12 @@ def verify(result, expected, path, tol=1e-9):
     return not bad
 
 
-def verify_gamma2(result, expected, path, tol=1e-6):
-    """Compare the computed gamma2 scores with the pinned `gamma2` block."""
-    ref = expected.get("gamma2") or {}
+def verify_pooled_max(result, expected, block_key, path, tol=1e-6):
+    """Compare computed pooled-max scores (gamma2 or phase coherence) with the
+    pinned `expected[block_key]` block."""
+    ref = expected.get(block_key) or {}
     if not ref:
-        print("  !! the reference file has no `gamma2` block", file=sys.stderr)
+        print(f"  !! the reference file has no `{block_key}` block", file=sys.stderr)
         return None
     bad = []
 
@@ -502,13 +545,13 @@ def verify_gamma2(result, expected, path, tol=1e-6):
 
     for name, row in (ref.get("per_state") or {}).items():
         got = result["per_state"].get(name, {})
-        check(f"gamma2 {name} delta", got.get("delta"), row.get("delta"))
-        check(f"gamma2 {name} sds", got.get("sds"), row.get("sds"))
-    check("gamma2 max_pairwise_sds", result["max_pairwise_sds"],
+        check(f"{block_key} {name} delta", got.get("delta"), row.get("delta"))
+        check(f"{block_key} {name} sds", got.get("sds"), row.get("sds"))
+    check(f"{block_key} max_pairwise_sds", result["max_pairwise_sds"],
           ref.get("max_pairwise_sds"))
-    check("gamma2 pooled sds", result["pooled"]["sds"],
+    check(f"{block_key} pooled sds", result["pooled"]["sds"],
           (ref.get("pooled") or {}).get("sds"))
-    print(f"  {len(bad)} mismatch(es) in gamma2 ({os.path.basename(path)})")
+    print(f"  {len(bad)} mismatch(es) in {block_key} ({os.path.basename(path)})")
     return not bad
 
 
@@ -516,7 +559,8 @@ def main(argv=None):
     ap = argparse.ArgumentParser(
         prog=os.path.basename(__file__),
         description="Compute the LUMO state-discrimination scores (SDS): the modal "
-                    "SHM channels and the whole-tower gamma2 coherence channel.",
+                    "SHM channels, the whole-tower gamma2 coherence channel, and "
+                    "the phase coherence channel.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="exit codes: 0 ok, 1 unusable --expected, 2 input JSON/CSV missing "
                "or incompatible, 3 verification mismatch, 4 selftest failure")
@@ -525,11 +569,11 @@ def main(argv=None):
                     help="input JSON written by lumo_damping_frequencies.py "
                          "(default: %(default)s)")
     ap.add_argument("--csv", metavar="FILE", default=DEFAULT_CSV,
-                    help="input CSV for the gamma2 coherence channel "
+                    help="input CSV for the gamma2 and phase coherence channels "
                          "(default: %(default)s)")
     ap.add_argument("--expected", metavar="FILE",
-                    help="pinned reference for --verify, covering both the modal "
-                         "and the gamma2 channels (default: "
+                    help="pinned reference for --verify, covering the modal, "
+                         "gamma2 and phase coherence channels (default: "
                          "../data/lumo_sds_expected.json); optional")
     ap.add_argument("--json", dest="json_out", metavar="FILE",
                     help="also write the score block to FILE")
@@ -567,6 +611,7 @@ def main(argv=None):
 
     res = score(doc)
     res_gamma2 = score_gamma2(args.csv)
+    res_phase = score_phase_coherence(args.csv)
     block = {
         "schema": "lumo_sds/v1",
         "generated": args.date,
@@ -609,6 +654,20 @@ def main(argv=None):
             },
             **res_gamma2,
         },
+        "phase_coherence": {
+            "source_csv": os.path.basename(args.csv),
+            "method": {
+                "metric": "Cliff's delta between the pooled healthy "
+                          "phase_coherence values and one damage state's "
+                          "phase_coherence values; strict comparisons, ties "
+                          "count for neither side",
+                "aggregate": "SDS = 10 * max(|delta|) across the three "
+                             "Healthy-to-damage comparisons; the pooled "
+                             "Healthy-vs-all-damaged SDS is reported separately, "
+                             "not folded into the max",
+            },
+            **res_phase,
+        },
     }
 
     print(f"LUMO modal state-discrimination scores - source "
@@ -618,6 +677,7 @@ def main(argv=None):
         print("modal exclusions:")
         print(render_explain(res, doc))
     print(render_gamma2_table(res_gamma2))
+    print(render_phase_coherence_table(res_phase))
 
     ok = True
     if args.verify:
@@ -626,8 +686,9 @@ def main(argv=None):
             with open(expected_path) as fh:
                 expected = json.load(fh)
             ok_modal = verify(res, expected, expected_path) is True
-            ok_gamma2 = verify_gamma2(res_gamma2, expected, expected_path) is True
-            ok = ok_modal and ok_gamma2
+            ok_gamma2 = verify_pooled_max(res_gamma2, expected, "gamma2", expected_path) is True
+            ok_phase = verify_pooled_max(res_phase, expected, "phase_coherence", expected_path) is True
+            ok = ok_modal and ok_gamma2 and ok_phase
         elif args.expected:
             print(f"error: --expected file not found: {expected_path}", file=sys.stderr)
             return 1
