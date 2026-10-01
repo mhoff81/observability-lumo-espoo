@@ -1,0 +1,171 @@
+{
+  "n_acquisitions": 150,
+  "date_first": "2024-09-05",
+  "date_last": "2026-09-07",
+  "lumo_reference": {
+    "ascending_gamma2": 0.0617,
+    "descending_gamma2": 0.0261
+  },
+  "monthly": {
+    "2024-09": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2024-10": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2024-11": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2024-12": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2025-01": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2025-02": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2025-03": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2025-04": {
+      "ASCENDING": 2,
+      "DESCENDING": 4
+    },
+    "2025-05": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2025-06": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2025-07": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2025-08": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2025-09": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2025-10": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2025-11": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2025-12": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2026-01": {
+      "ASCENDING": 2,
+      "DESCENDING": 4
+    },
+    "2026-02": {
+      "ASCENDING": 2,
+      "DESCENDING": 4
+    },
+    "2026-03": {
+      "ASCENDING": 2,
+      "DESCENDING": 4
+    },
+    "2026-04": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2026-05": {
+      "ASCENDING": 2,
+      "DESCENDING": 4
+    },
+    "2026-06": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2026-07": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2026-08": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    },
+    "2026-09": {
+      "ASCENDING": 3,
+      "DESCENDING": 3
+    }
+  },
+  "coherence_gamma2": {
+    "n": 150,
+    "median": 0.06244152419511563
+  },
+  "coherence_gamma2_ascending": {
+    "n": 70,
+    "median": 0.17461703127250922
+  },
+  "coherence_gamma2_descending": {
+    "n": 80,
+    "median": 0.025754646102792086
+  },
+  "coherence_masked_pixels": {
+    "n": 150,
+    "median": 8.0
+  },
+  "coherence_masked_pixels_ascending": {
+    "n": 70,
+    "median": 6.0
+  },
+  "coherence_masked_pixels_descending": {
+    "n": 80,
+    "median": 11.0
+  },
+  "phase_coherence": {
+    "n": 80,
+    "median": 0.14121169467225866
+  },
+  "phase_coherence_ascending": {
+    "n": 39,
+    "median": 0.1458656571358031
+  },
+  "phase_coherence_descending": {
+    "n": 41,
+    "median": 0.14066458277843724
+  },
+  "phase_snr_db": {
+    "n": 0,
+    "median": null
+  },
+  "phase_snr_db_ascending": {
+    "n": 0,
+    "median": null
+  },
+  "phase_snr_db_descending": {
+    "n": 0,
+    "median": null
+  },
+  "phase_rms_rad": {
+    "n": 80,
+    "median": 5.32670149160019
+  },
+  "phase_rms_rad_ascending": {
+    "n": 39,
+    "median": 5.239503091369515
+  },
+  "phase_rms_rad_descending": {
+    "n": 41,
+    "median": 5.4359413297838195
+  }
+}

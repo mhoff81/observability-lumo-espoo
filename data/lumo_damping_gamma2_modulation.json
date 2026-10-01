@@ -1,0 +1,112 @@
+{
+ "rows": [
+  {
+   "state": "dam3",
+   "healthy_campaign": "05_Healthy",
+   "damaged_campaign": "06_DAM3_111",
+   "zeta_H1_healthy": 0.003373878049368959,
+   "zeta_H1_damaged": 0.002574850031118885,
+   "zeta_H1_cliffs_delta": -0.92,
+   "zeta_fund_healthy": 0.01469909840418774,
+   "zeta_fund_damaged": 0.014363962427118012,
+   "zeta_fund_cliffs_delta": 0.2,
+   "gamma2_healthy": 0.04528475310247574,
+   "gamma2_damaged": 0.057043673704619255,
+   "gamma2_welch_p": 0.9091488432239405,
+   "modulation_healthy": 0.8520385728147242,
+   "modulation_damaged": 0.8213119966284745,
+   "modulation_welch_p": 0.08760127041247745,
+   "shm_wind_resp_ratio_4ms": 0.3782,
+   "shm_wind_signal_present": true,
+   "zeta_H1_change": -0.000799028018250074,
+   "zeta_fund_change": -0.0003351359770697275,
+   "gamma2_change": 0.011758920602143515,
+   "modulation_change": -0.030726576186249632
+  },
+  {
+   "state": "dam4",
+   "healthy_campaign": "03_Healthy",
+   "damaged_campaign": "04_DAM4_111",
+   "zeta_H1_healthy": 0.003280004336675198,
+   "zeta_H1_damaged": 0.002452767161214422,
+   "zeta_H1_cliffs_delta": -1.0,
+   "zeta_fund_healthy": 0.014900461294792867,
+   "zeta_fund_damaged": 0.016545759609758307,
+   "zeta_fund_cliffs_delta": 0.84,
+   "gamma2_healthy": 0.04528475310247574,
+   "gamma2_damaged": 0.04173754476841353,
+   "gamma2_welch_p": 0.7135310780704076,
+   "modulation_healthy": 0.8520385728147242,
+   "modulation_damaged": 0.8832407449746171,
+   "modulation_welch_p": 0.047460914561300305,
+   "shm_wind_resp_ratio_4ms": null,
+   "shm_wind_signal_present": null,
+   "zeta_H1_change": -0.0008272371754607763,
+   "zeta_fund_change": 0.001645298314965439,
+   "gamma2_change": -0.0035472083340622115,
+   "modulation_change": 0.03120217215989296
+  },
+  {
+   "state": "dam6",
+   "healthy_campaign": "01_Healthy",
+   "damaged_campaign": "02_DAM6_111",
+   "zeta_H1_healthy": 0.004031285663055913,
+   "zeta_H1_damaged": 0.002901798995921568,
+   "zeta_H1_cliffs_delta": -1.0,
+   "zeta_fund_healthy": 0.01388147506997865,
+   "zeta_fund_damaged": 0.015215566479593576,
+   "zeta_fund_cliffs_delta": 0.28,
+   "gamma2_healthy": 0.04528475310247574,
+   "gamma2_damaged": 0.036222747927553416,
+   "gamma2_welch_p": 0.0786928590363966,
+   "modulation_healthy": 0.8520385728147242,
+   "modulation_damaged": 0.8652478422569572,
+   "modulation_welch_p": 0.13428505215851394,
+   "shm_wind_resp_ratio_4ms": 2.0473,
+   "shm_wind_signal_present": false,
+   "zeta_H1_change": -0.001129486667134345,
+   "zeta_fund_change": 0.001334091409614926,
+   "gamma2_change": -0.009062005174922325,
+   "modulation_change": 0.013209269442232996
+  }
+ ],
+ "mechanism1": {
+  "dam3": {
+   "zeta_H1_change": -0.000799028018250074,
+   "gamma2_change": 0.011758920602143515,
+   "consistent_with_damping_drive": true
+  },
+  "dam4": {
+   "zeta_H1_change": -0.0008272371754607763,
+   "gamma2_change": -0.0035472083340622115,
+   "consistent_with_damping_drive": false
+  },
+  "dam6": {
+   "zeta_H1_change": -0.001129486667134345,
+   "gamma2_change": -0.009062005174922325,
+   "consistent_with_damping_drive": false
+  }
+ },
+ "mechanism2": {
+  "dam3": {
+   "modulation_change": -0.030726576186249632,
+   "shm_wind_resp_ratio_4ms": 0.3782,
+   "modulation_tracks_amplitude": true
+  },
+  "dam4": {
+   "modulation_change": 0.03120217215989296,
+   "shm_wind_resp_ratio_4ms": null,
+   "modulation_tracks_amplitude": false
+  },
+  "dam6": {
+   "modulation_change": 0.013209269442232996,
+   "shm_wind_resp_ratio_4ms": 2.0473,
+   "modulation_tracks_amplitude": true
+  }
+ },
+ "verdict": [
+  "* **dam3** (`05_Healthy` \u2192 `06_DAM3_111`): \u03b6(H1) 0.00337 \u2192 0.00257 (\u0394 -0.00080, Cliff's \u03b4 -0.92); \u03b6(fund) \u0394 -0.00034 (\u03b4 +0.20); \u03b3\u00b2 0.0453 \u2192 0.0570 (Welch p=0.9091); modulation 0.852 \u2192 0.821 (p=0.088); SHM wind-resp ratio @4 m/s 0.3782.",
+  "* **dam4** (`03_Healthy` \u2192 `04_DAM4_111`): \u03b6(H1) 0.00328 \u2192 0.00245 (\u0394 -0.00083, Cliff's \u03b4 -1.00); \u03b6(fund) \u0394 +0.00165 (\u03b4 +0.84); \u03b3\u00b2 0.0453 \u2192 0.0417 (Welch p=0.7135); modulation 0.852 \u2192 0.883 (p=0.047); SHM wind-resp ratio @4 m/s open (no SHM wind recordings for this campaign).",
+  "* **dam6** (`01_Healthy` \u2192 `02_DAM6_111`): \u03b6(H1) 0.00403 \u2192 0.00290 (\u0394 -0.00113, Cliff's \u03b4 -1.00); \u03b6(fund) \u0394 +0.00133 (\u03b4 +0.28); \u03b3\u00b2 0.0453 \u2192 0.0362 (Welch p=0.0787); modulation 0.852 \u2192 0.865 (p=0.134); SHM wind-resp ratio @4 m/s 2.0473."
+ ]
+}

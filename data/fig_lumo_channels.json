@@ -1,0 +1,85 @@
+{
+  "n_bursts_raw": 356,
+  "n_overpasses": 178,
+  "n_bursts": 178,
+  "brightness_ratio": {
+    "n": 178,
+    "median": 0.017499999999999998
+  },
+  "raw_phase_coherence": {
+    "n": 178,
+    "median": 0.1313910583062067
+  },
+  "gamma2": {
+    "n": 178,
+    "median": 0.04489069195625481
+  },
+  "modulation_depth": {
+    "n": 178,
+    "median": 0.8403902296387326
+  },
+  "monthly_overpasses": {
+    "2020-08": 15,
+    "2020-09": 15,
+    "2020-10": 16,
+    "2020-11": 15,
+    "2020-12": 16,
+    "2021-01": 15,
+    "2021-02": 13,
+    "2021-03": 15,
+    "2021-04": 15,
+    "2021-05": 15,
+    "2021-06": 14,
+    "2021-07": 14
+  },
+  "monthly_overpasses_by_orbit": {
+    "2020-08": {
+      "ASCENDING": 5,
+      "DESCENDING": 10
+    },
+    "2020-09": {
+      "ASCENDING": 5,
+      "DESCENDING": 10
+    },
+    "2020-10": {
+      "ASCENDING": 5,
+      "DESCENDING": 11
+    },
+    "2020-11": {
+      "ASCENDING": 5,
+      "DESCENDING": 10
+    },
+    "2020-12": {
+      "ASCENDING": 5,
+      "DESCENDING": 11
+    },
+    "2021-01": {
+      "ASCENDING": 5,
+      "DESCENDING": 10
+    },
+    "2021-02": {
+      "ASCENDING": 4,
+      "DESCENDING": 9
+    },
+    "2021-03": {
+      "ASCENDING": 4,
+      "DESCENDING": 11
+    },
+    "2021-04": {
+      "ASCENDING": 5,
+      "DESCENDING": 10
+    },
+    "2021-05": {
+      "ASCENDING": 5,
+      "DESCENDING": 10
+    },
+    "2021-06": {
+      "ASCENDING": 4,
+      "DESCENDING": 10
+    },
+    "2021-07": {
+      "ASCENDING": 5,
+      "DESCENDING": 9
+    }
+  }
+}

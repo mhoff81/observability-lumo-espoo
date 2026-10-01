@@ -39,9 +39,9 @@ width is ~14 x larger (zeta 0.0496), so that campaign's near-complete separation
 dropped from *both* sides, so LUMO_H2_DAMPING is scored on 20 recordings instead
 of 30 - and reads 3.2 instead of 5.4667.
 
-INPUT: `lumo_damping_frequencies.json`, the output of `lumo_damping_frequencies.py`
-in this folder (schema `lumo_damping_frequencies/v1`), which supplies, per
-recording, `f_peak_hz` and `zeta` for the fundamental, h1 and h2.
+INPUT: `../data/lumo_damping_frequencies.json`, the output of the sibling script
+`lumo_damping_frequencies.py` (schema `lumo_damping_frequencies/v1`), which
+supplies, per recording, `f_peak_hz` and `zeta` for the fundamental, h1 and h2.
 
 SELF-CONTAINED: this script uses the Python 3 standard library only. It imports
 no other project code, reads no database, performs no network access and needs no
@@ -66,6 +66,9 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+# The scripts live in `code/`, the committed data (the JSON this script consumes
+# and the pinned reference it verifies against) in the sibling `data/` directory.
+DATA_DIR = os.path.normpath(os.path.join(HERE, os.pardir, "data"))
 
 # --- The score: constants of the 0-10 discrimination scale -------------------
 SDS_SCALE = 10.0
@@ -397,12 +400,12 @@ def main(argv=None):
         epilog="exit codes: 0 ok, 1 unusable --expected, 2 input JSON missing or "
                "incompatible, 3 verification mismatch, 4 selftest failure")
     ap.add_argument("--from", dest="source", metavar="FILE",
-                    default=os.path.join(HERE, "lumo_damping_frequencies.json"),
+                    default=os.path.join(DATA_DIR, "lumo_damping_frequencies.json"),
                     help="input JSON written by lumo_damping_frequencies.py "
                          "(default: %(default)s)")
     ap.add_argument("--expected", metavar="FILE",
                     help="pinned reference for --verify (default: "
-                         "lumo_sds_expected.json next to this script); optional")
+                         "../data/lumo_sds_expected.json); optional")
     ap.add_argument("--json", dest="json_out", metavar="FILE",
                     help="also write the score block to FILE")
     ap.add_argument("--explain", action="store_true",
@@ -474,7 +477,7 @@ def main(argv=None):
 
     ok = True
     if args.verify:
-        expected_path = args.expected or os.path.join(HERE, "lumo_sds_expected.json")
+        expected_path = args.expected or os.path.join(DATA_DIR, "lumo_sds_expected.json")
         if os.path.isfile(expected_path):
             with open(expected_path) as fh:
                 ok = verify(res, json.load(fh), expected_path) is True

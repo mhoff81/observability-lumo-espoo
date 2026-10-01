@@ -49,10 +49,9 @@ USAGE
 
   --root       dataset root (default: $LUMO_DATA_DIR); must contain the six
                `NN_State` directories
-  --out        output JSON (default: lumo_damping_frequencies.json, next to
-               this script)
+  --out        output JSON (default: ../data/lumo_damping_frequencies.json)
   --reference  the curated cross-reference to check against (default:
-               lumo_frequencies.json, next to this script)
+               ../data/lumo_frequencies.json)
   --verify     after computing, compare all 18 medians against the
                `local_measured_hz` block of `--reference`
   --date       value for the JSON's `generated` field (default: today, UTC)
@@ -72,6 +71,9 @@ import scipy.io as sio
 from scipy import signal
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+# The scripts live in `code/`, the committed data (this script's output JSON and
+# the curated reference it verifies against) in the sibling `data/` directory.
+DATA_DIR = os.path.normpath(os.path.join(HERE, os.pardir, "data"))
 
 # --- Estimator constants: verbatim copy of the published estimator ---
 # Do not "tune" these: they are what makes the medians here agree with the
@@ -540,10 +542,10 @@ def main(argv=None):
                     help="dataset root holding the six NN_State directories "
                          "(default: $LUMO_DATA_DIR)")
     ap.add_argument("--out", metavar="FILE",
-                    default=os.path.join(HERE, "lumo_damping_frequencies.json"),
+                    default=os.path.join(DATA_DIR, "lumo_damping_frequencies.json"),
                     help="output JSON (default: %(default)s)")
     ap.add_argument("--reference", metavar="FILE",
-                    default=os.path.join(HERE, "lumo_frequencies.json"),
+                    default=os.path.join(DATA_DIR, "lumo_frequencies.json"),
                     help="curated JSON to check against (default: %(default)s)")
     ap.add_argument("--verify", action="store_true",
                     help="also compare every median against --reference's "

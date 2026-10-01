@@ -1,0 +1,493 @@
+{
+  "method": "SHM-Beschleunigungssensoren (Uni Hannover); Welch-PSD 4 s, Kanalmittel; Modalband-Amplituden (sqrt(mean PSD)) und SNR; Wind/Temp/Niederschlag Open-Meteo Archiv (stuendlich, naechste Stunde, UTC); experimentelle Einheit = Recording; deskriptiv.",
+  "recordings": [
+    {
+      "campaign": "dam6",
+      "state": "healthy",
+      "file": "SHMTS_202010050012.mat",
+      "timestamp": "2020-10-05T00:12:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.0030790916273129186,
+      "amp_fundamental_peak": 3.557753713163424e-05,
+      "amp_high_rms": 0.0019695398087089806,
+      "amp_high_peak": 2.2769753357975573e-05,
+      "snr_fundamental": 9372.275329487504,
+      "wind_ms": 3.42,
+      "temperature_c": 11.5,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam6",
+      "state": "healthy",
+      "file": "SHMTS_202010051522.mat",
+      "timestamp": "2020-10-05T15:22:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.0277269087324484,
+      "amp_fundamental_peak": 0.002870987867235543,
+      "amp_high_rms": 0.006148874113712972,
+      "amp_high_peak": 0.0002029201373643584,
+      "snr_fundamental": 3872.4136940672624,
+      "wind_ms": 3.65,
+      "temperature_c": 14.4,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam6",
+      "state": "healthy",
+      "file": "SHMTS_202010051932.mat",
+      "timestamp": "2020-10-05T19:32:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.006374158006370583,
+      "amp_fundamental_peak": 0.00015024017523613544,
+      "amp_high_rms": 0.003170709526799815,
+      "amp_high_peak": 4.3195501205780095e-05,
+      "snr_fundamental": 4648.897893665073,
+      "wind_ms": 3.31,
+      "temperature_c": 10.9,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam6",
+      "state": "healthy",
+      "file": "SHMTS_202010061931.mat",
+      "timestamp": "2020-10-06T19:31:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.0017064446209942943,
+      "amp_fundamental_peak": 1.068369353142864e-05,
+      "amp_high_rms": 0.0014681826393792702,
+      "amp_high_peak": 1.4741139592895996e-05,
+      "snr_fundamental": 5080.112881220693,
+      "wind_ms": 4.53,
+      "temperature_c": 12.0,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam6",
+      "state": "healthy",
+      "file": "SHMTS_202010080330.mat",
+      "timestamp": "2020-10-08T03:30:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.007007926829833721,
+      "amp_fundamental_peak": 0.00018143094440764782,
+      "amp_high_rms": 0.0030464910831212453,
+      "amp_high_peak": 7.54633920550305e-05,
+      "snr_fundamental": 7654.181345998603,
+      "wind_ms": 4.1,
+      "temperature_c": 10.1,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam6",
+      "state": "dam6",
+      "file": "SHMTS_202010140009.mat",
+      "timestamp": "2020-10-14T00:09:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.005548486948450602,
+      "amp_fundamental_peak": 0.0001189450502459116,
+      "amp_high_rms": 0.003894038420518831,
+      "amp_high_peak": 9.4220117145798e-05,
+      "snr_fundamental": 3018.444928729874,
+      "wind_ms": 3.04,
+      "temperature_c": 8.4,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam6",
+      "state": "dam6",
+      "file": "SHMTS_202010141759.mat",
+      "timestamp": "2020-10-14T17:59:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.018694103899106366,
+      "amp_fundamental_peak": 0.0013328355146169652,
+      "amp_high_rms": 0.004152884879883085,
+      "amp_high_peak": 0.0001373643964301916,
+      "snr_fundamental": 5726.785981860738,
+      "wind_ms": 5.18,
+      "temperature_c": 8.4,
+      "precipitation_mm": 0.9
+    },
+    {
+      "campaign": "dam6",
+      "state": "dam6",
+      "file": "SHMTS_202010150419.mat",
+      "timestamp": "2020-10-15T04:19:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.015509088016186053,
+      "amp_fundamental_peak": 0.0009245957489219937,
+      "amp_high_rms": 0.003886373361672459,
+      "amp_high_peak": 8.771143202804944e-05,
+      "snr_fundamental": 2954.0112033998407,
+      "wind_ms": 4.54,
+      "temperature_c": 7.5,
+      "precipitation_mm": 0.2
+    },
+    {
+      "campaign": "dam6",
+      "state": "dam6",
+      "file": "SHMTS_202010161008.mat",
+      "timestamp": "2020-10-16T10:08:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.0020375610519319325,
+      "amp_fundamental_peak": 1.6028119194213954e-05,
+      "amp_high_rms": 0.0020664912311962147,
+      "amp_high_peak": 2.9145474784244888e-05,
+      "snr_fundamental": 5242.799258218091,
+      "wind_ms": 2.53,
+      "temperature_c": 10.1,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam6",
+      "state": "dam6",
+      "file": "SHMTS_202010191806.mat",
+      "timestamp": "2020-10-19T18:06:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.0015902011811824333,
+      "amp_fundamental_peak": 9.724915108563329e-06,
+      "amp_high_rms": 0.0009896070377488726,
+      "amp_high_peak": 7.023849467406036e-06,
+      "snr_fundamental": 7743.310691341863,
+      "wind_ms": 1.64,
+      "temperature_c": 8.3,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam3",
+      "state": "healthy",
+      "file": "SHMTS_202103100004.mat",
+      "timestamp": "2021-03-10T00:04:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.0002443989202421965,
+      "amp_fundamental_peak": 2.175259827950415e-07,
+      "amp_high_rms": 7.058116443292231e-05,
+      "amp_high_peak": 2.3916063385192052e-08,
+      "snr_fundamental": 701.3415236548179,
+      "wind_ms": 0.81,
+      "temperature_c": 2.7,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam3",
+      "state": "healthy",
+      "file": "SHMTS_202103101523.mat",
+      "timestamp": "2021-03-10T15:23:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.008253143859936906,
+      "amp_fundamental_peak": 0.00024954298243805794,
+      "amp_high_rms": 0.004683498666172005,
+      "amp_high_peak": 0.00010953254818903822,
+      "snr_fundamental": 1952.9344487348883,
+      "wind_ms": 3.64,
+      "temperature_c": 8.4,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam3",
+      "state": "healthy",
+      "file": "SHMTS_202103110713.mat",
+      "timestamp": "2021-03-11T07:13:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.03458364153090663,
+      "amp_fundamental_peak": 0.004382245479194285,
+      "amp_high_rms": 0.007375993560591673,
+      "amp_high_peak": 0.0003599764839468745,
+      "snr_fundamental": 2607.7976057512215,
+      "wind_ms": 7.07,
+      "temperature_c": 7.6,
+      "precipitation_mm": 1.8
+    },
+    {
+      "campaign": "dam3",
+      "state": "healthy",
+      "file": "SHMTS_202103120243.mat",
+      "timestamp": "2021-03-12T02:43:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.05749101447598766,
+      "amp_fundamental_peak": 0.012046652075732852,
+      "amp_high_rms": 0.012341692310943612,
+      "amp_high_peak": 0.0013880112830423035,
+      "snr_fundamental": 5003.673198723994,
+      "wind_ms": 7.82,
+      "temperature_c": 5.4,
+      "precipitation_mm": 0.2
+    },
+    {
+      "campaign": "dam3",
+      "state": "healthy",
+      "file": "SHMTS_202103150101.mat",
+      "timestamp": "2021-03-15T01:01:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.019614135821204543,
+      "amp_fundamental_peak": 0.0013748606962959205,
+      "amp_high_rms": 0.005291044552006822,
+      "amp_high_peak": 0.00014657645187377368,
+      "snr_fundamental": 2786.8996411621374,
+      "wind_ms": 4.58,
+      "temperature_c": 3.5,
+      "precipitation_mm": 0.4
+    },
+    {
+      "campaign": "dam3",
+      "state": "dam3",
+      "file": "SHMTS_202103190009.mat",
+      "timestamp": "2021-03-19T00:09:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.0009690794895301516,
+      "amp_fundamental_peak": 3.504366408776422e-06,
+      "amp_high_rms": 0.0024059740377415316,
+      "amp_high_peak": 7.382700443545341e-05,
+      "snr_fundamental": 3992.4301072291296,
+      "wind_ms": 2.44,
+      "temperature_c": -0.2,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam3",
+      "state": "dam3",
+      "file": "SHMTS_202103200038.mat",
+      "timestamp": "2021-03-20T00:38:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.00021773567656455822,
+      "amp_fundamental_peak": 1.6512238568130495e-07,
+      "amp_high_rms": 8.7435316315577e-05,
+      "amp_high_peak": 3.564632658428001e-08,
+      "snr_fundamental": 602.7017094815718,
+      "wind_ms": 1.87,
+      "temperature_c": -4.4,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam3",
+      "state": "dam3",
+      "file": "SHMTS_202103200708.mat",
+      "timestamp": "2021-03-20T07:08:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.0003078300440435435,
+      "amp_fundamental_peak": 3.533238670360229e-07,
+      "amp_high_rms": 0.00022108637493751943,
+      "amp_high_peak": 4.796956061986458e-07,
+      "snr_fundamental": 829.0369547571231,
+      "wind_ms": 0.45,
+      "temperature_c": -2.0,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam3",
+      "state": "dam3",
+      "file": "SHMTS_202103210228.mat",
+      "timestamp": "2021-03-21T02:28:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.018707184366960065,
+      "amp_fundamental_peak": 0.0013184719484034325,
+      "amp_high_rms": 0.006051880673306171,
+      "amp_high_peak": 0.00031400766379324156,
+      "snr_fundamental": 5243.892059491258,
+      "wind_ms": 5.41,
+      "temperature_c": 4.5,
+      "precipitation_mm": 0.0
+    },
+    {
+      "campaign": "dam3",
+      "state": "dam3",
+      "file": "SHMTS_202103240111.mat",
+      "timestamp": "2021-03-24T01:11:00",
+      "duration_s": 599.78,
+      "fs_hz": 1651.6129032258063,
+      "amp_fundamental_rms": 0.003161645925057868,
+      "amp_fundamental_peak": 3.769355253423973e-05,
+      "amp_high_rms": 0.005931910036541215,
+      "amp_high_peak": 0.00035929057755400957,
+      "snr_fundamental": 4888.016005883652,
+      "wind_ms": 1.84,
+      "temperature_c": 5.1,
+      "precipitation_mm": 0.0
+    }
+  ],
+  "verdicts": [
+    {
+      "campaign": "dam6",
+      "n": {
+        "healthy": 5,
+        "dam6": 5
+      },
+      "wind_ms": {
+        "healthy": {
+          "min": 3.31,
+          "median": 3.65,
+          "max": 4.53
+        },
+        "dam6": {
+          "min": 1.64,
+          "median": 3.04,
+          "max": 5.18
+        }
+      },
+      "wind_variance_sufficient": false,
+      "metrics": {
+        "amp_fundamental_rms": {
+          "median_healthy": 0.006374,
+          "median_damaged": 0.005548,
+          "cliffs_delta": -0.12,
+          "bootstrap_ci95_median_diff": [
+            -0.022178,
+            0.013803
+          ]
+        },
+        "amp_fundamental_peak": {
+          "median_healthy": 0.00015,
+          "median_damaged": 0.000119,
+          "cliffs_delta": -0.12,
+          "bootstrap_ci95_median_diff": [
+            -0.002752,
+            0.001183
+          ]
+        },
+        "amp_high_rms": {
+          "median_healthy": 0.003046,
+          "median_damaged": 0.003886,
+          "cliffs_delta": 0.12,
+          "bootstrap_ci95_median_diff": [
+            -0.002263,
+            0.002418
+          ]
+        },
+        "snr_fundamental": {
+          "median_healthy": 5080.112881,
+          "median_damaged": 5242.799258,
+          "cliffs_delta": -0.2,
+          "bootstrap_ci95_median_diff": [
+            -4700.170143,
+            2663.19781
+          ]
+        }
+      },
+      "wind_correlation": {
+        "healthy": {
+          "spearman_amp_fundamental_vs_wind": -0.2
+        },
+        "dam6": {
+          "spearman_amp_fundamental_vs_wind": 1.0
+        }
+      },
+      "response_curve": {
+        "healthy": {
+          "loglog_exponent_k": -3.0777,
+          "coefficient_c": 0.345585746,
+          "r2": 0.1472,
+          "predicted_amp_at_4_ms": 0.004848145
+        },
+        "dam6": {
+          "loglog_exponent_k": 2.3542,
+          "coefficient_c": 0.0003796579,
+          "r2": 0.9307,
+          "predicted_amp_at_4_ms": 0.009925483
+        },
+        "damaged_vs_healthy_at_4ms": 2.0473
+      },
+      "curves_differ_at_common_wind": true,
+      "signal_present": false
+    },
+    {
+      "campaign": "dam3",
+      "n": {
+        "healthy": 5,
+        "dam3": 5
+      },
+      "wind_ms": {
+        "healthy": {
+          "min": 0.81,
+          "median": 4.58,
+          "max": 7.82
+        },
+        "dam3": {
+          "min": 0.45,
+          "median": 1.87,
+          "max": 5.41
+        }
+      },
+      "wind_variance_sufficient": true,
+      "metrics": {
+        "amp_fundamental_rms": {
+          "median_healthy": 0.019614,
+          "median_damaged": 0.000969,
+          "cliffs_delta": -0.6,
+          "bootstrap_ci95_median_diff": [
+            -0.056522,
+            0.002917
+          ]
+        },
+        "amp_fundamental_peak": {
+          "median_healthy": 0.001375,
+          "median_damaged": 4e-06,
+          "cliffs_delta": -0.6,
+          "bootstrap_ci95_median_diff": [
+            -0.012043,
+            3.7e-05
+          ]
+        },
+        "amp_high_rms": {
+          "median_healthy": 0.005291,
+          "median_damaged": 0.002406,
+          "cliffs_delta": -0.28,
+          "bootstrap_ci95_median_diff": [
+            -0.009936,
+            0.002335
+          ]
+        },
+        "snr_fundamental": {
+          "median_healthy": 2607.797606,
+          "median_damaged": 3992.430107,
+          "cliffs_delta": 0.12,
+          "bootstrap_ci95_median_diff": [
+            -2184.197932,
+            3291.088584
+          ]
+        }
+      },
+      "wind_correlation": {
+        "healthy": {
+          "spearman_amp_fundamental_vs_wind": 1.0
+        },
+        "dam3": {
+          "spearman_amp_fundamental_vs_wind": 0.5
+        }
+      },
+      "response_curve": {
+        "healthy": {
+          "loglog_exponent_k": 2.3715,
+          "coefficient_c": 0.0004134717,
+          "r2": 0.9938,
+          "predicted_amp_at_4_ms": 0.011072261
+        },
+        "dam3": {
+          "loglog_exponent_k": 1.4857,
+          "coefficient_c": 0.0005339713,
+          "r2": 0.5372,
+          "predicted_amp_at_4_ms": 0.004187845
+        },
+        "damaged_vs_healthy_at_4ms": 0.3782
+      },
+      "curves_differ_at_common_wind": true,
+      "signal_present": true
+    }
+  ]
+}

@@ -2,3 +2,7 @@
 # sometimes imported by hand; keep bytecode out of the history.
 __pycache__/
 *.pyc
+
+# CDSE/SLC secrets for code/lumo_slc_ranged_read.py + code/lumo_burst_cache_audit.py:
+# a local copy of the tower's backend/.env, never committed.
+secrets/
